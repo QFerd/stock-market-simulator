@@ -50,6 +50,7 @@ public class Game {
 	}
 
 	@Id
+	@Column(name="game_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="gameSequence")
 	@SequenceGenerator(name="gameSequence", sequenceName="GAME_SEQ", allocationSize=1)
 	int gameId;

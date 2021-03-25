@@ -45,6 +45,7 @@ public class Position {
 
 
 	@Id
+	@Column(name="position_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="positionSequence")
 	@SequenceGenerator(name="positionSequence", sequenceName="POSITION_SEQ", allocationSize=1)
 	int positionId;
