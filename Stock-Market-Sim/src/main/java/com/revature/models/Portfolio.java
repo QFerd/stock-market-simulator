@@ -54,6 +54,7 @@ public class Portfolio {
 	}
 	
 	@Id
+	@Column(name="portfolio_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="portfolioSequence")
 	@SequenceGenerator(name="portfolioSequence", sequenceName="PORTFOLIO_SEQ", allocationSize=1)
 	int portfolioId;

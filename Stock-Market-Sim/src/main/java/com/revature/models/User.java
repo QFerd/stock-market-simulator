@@ -21,6 +21,7 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
+	@Column(name="user_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSequence")
 	@SequenceGenerator(name="userSequence", sequenceName="USER_SEQ", allocationSize=1)
 	int userId;
@@ -45,6 +46,17 @@ public class User {
 	
 	public User() {};
 	
+	
+	//For creating new users
+	public User(String username, String password, UserRole userRoleHolder) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.userRoleHolder = userRoleHolder;
+	}
+
+
+
 	public User(int userId, String username, String password, UserRole userRoleHolder, List<Portfolio> portfolioList) {
 		super();
 		this.userId = userId;

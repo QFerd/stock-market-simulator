@@ -22,7 +22,11 @@ public class UserRole {
 		super();
 	}
 	
-	
+
+	public UserRole(int roleId) {
+		super();
+		this.roleId = roleId;
+	}
 
 	public UserRole(String roleName, List<User> userList) {
 		super();

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.User;
+import com.revature.models.UserRole;
 
 @Repository("userRepository")
 @Transactional
@@ -50,8 +51,11 @@ public class UserRepositoryImpl implements UserRepository{
 			return null;
 		}
 	}
+	
 
 }
+
+
 	
 /*	public List<User> getUserByClassroom(int id){
 		
