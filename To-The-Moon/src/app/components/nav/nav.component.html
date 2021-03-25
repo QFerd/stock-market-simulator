@@ -4,22 +4,21 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div *ngIf="user.role != ''" class="collapse navbar-collapse" id="navbarTogglerDemo02" >
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <div *ngIf="user.role != ''">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8090/project-1/home">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8090/project-1/NewReimbursementForm">Fill Out New Reimbursements</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link active" href="http://localhost:8090/project-1/PastReimbursementPage">View Past Reimbursements</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link active" href="http://localhost:8090/project-1/Profile">Profile</a>
-                    </li>
-            </div>
+               
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:8090/project-1/home">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:8090/project-1/NewReimbursementForm">Fill Out New Reimbursements</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="http://localhost:8090/project-1/PastReimbursementPage">View Past Reimbursements</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="http://localhost:8090/project-1/Profile">Profile</a>
+                </li>
             </ul>
           <button type="button" class="btn btn-info" onclick = "logout()">Logout</button>
         </div>
