@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
+import { User } from './models/user.model';
 
 @NgModule({
   declarations: [
@@ -23,4 +24,6 @@ import { NavComponent } from './components/nav/nav.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  public user:User = new User(0,'','');
+}
