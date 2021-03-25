@@ -33,9 +33,11 @@ public class GameRepositoryImpl implements GameRepository {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Game getGameState() {
+	
 		try {
 			List<Game> gameList = (List<Game>) sessionFactory.getCurrentSession().createCriteria(Game.class).list();
-			return (Game) sessionFactory.getCurrentSession().createCriteria(Game.class).list().get(gameList.size());
+			logger.info("GameRepositoryImpl: Retrieved game list:" + gameList);
+			return (Game) sessionFactory.getCurrentSession().createCriteria(Game.class).list().get(gameList.size() - 1);
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;
