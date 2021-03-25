@@ -24,13 +24,13 @@ public class User {
 	@Column(name="user_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSequence")
 	@SequenceGenerator(name="userSequence", sequenceName="USER_SEQ", allocationSize=1)
-	int userId;
+	private int userId;
 	
 	@Column(name="USERNAME", unique=true, nullable=false)
-	String username;
+	private String username;
 	
 	@Column(name="PASSWORD", nullable=false)
-	String password;
+	private String password;
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	

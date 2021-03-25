@@ -20,15 +20,12 @@ public class GamePhase {
 		super();
 	}
 	
-	
 
-	public GamePhase(String phaseName, List<Game> gameList) {
+	public GamePhase(int phaseId, String phaseName) {
 		super();
+		this.phaseId = phaseId;
 		this.phaseName = phaseName;
-		this.gameList = gameList;
 	}
-
-
 
 	public GamePhase(int phaseId, String phaseName, List<Game> gameList) {
 		super();
@@ -41,10 +38,10 @@ public class GamePhase {
 
 	@Id
 	@Column(name="phase_id")
-	int phaseId;
+	private int phaseId;
 	
 	@Column(name="PHASE_NAME", unique=true, nullable=false)
-	String phaseName;
+	private String phaseName;
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	

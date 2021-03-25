@@ -48,14 +48,14 @@ public class Position {
 	@Column(name="position_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="positionSequence")
 	@SequenceGenerator(name="positionSequence", sequenceName="POSITION_SEQ", allocationSize=1)
-	int positionId;
+	private int positionId;
 	
 	//Stocks should be seperated with a comma
 	@Column(name="STOCK_SYMBOL")
-	String stockSymbol;
+	private String stockSymbol;
 	
 	@Column(name="QUANTITY")
-	int quantity;
+	private int quantity;
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	

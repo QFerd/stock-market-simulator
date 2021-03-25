@@ -27,7 +27,15 @@ public class Game {
 	public Game() {
 		super();
 	}
+	
+	public Game(LocalDate gameStartDate, LocalDate gameCurrentDate, GamePhase gamePhaseHolder) {
+		super();
+		this.gameStartDate = gameStartDate;
+		this.gameCurrentDate = gameCurrentDate;
+		this.gamePhaseHolder = gamePhaseHolder;
 
+	}
+	
 	public Game(LocalDate gameStartDate, LocalDate gameCurrentDate, GamePhase gamePhaseHolder,
 			List<Portfolio> portfolioList) {
 		super();
@@ -53,13 +61,13 @@ public class Game {
 	@Column(name="game_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="gameSequence")
 	@SequenceGenerator(name="gameSequence", sequenceName="GAME_SEQ", allocationSize=1)
-	int gameId;
+	private int gameId;
 	
 	@Column(name="GAME_START_DATE", nullable=false)
-	LocalDate gameStartDate;
+	private LocalDate gameStartDate;
 	
 	@Column(name="GAME_CURRENT_DATE", nullable=false)
-	LocalDate gameCurrentDate;
+	private LocalDate gameCurrentDate;
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
@@ -157,6 +165,12 @@ public class Game {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Game [gameId=" + gameId + ", gameStartDate=" + gameStartDate + ", gameCurrentDate=" + gameCurrentDate
+				+ "]";
+	}
+
 	
 }	
