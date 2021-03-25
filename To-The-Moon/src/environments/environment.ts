@@ -6,6 +6,7 @@ export const environment = {
   production: false
 };
 
+export const TO_THE_MOON_URL = `http://localhost:8080/Stock-Market-Sim/`
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

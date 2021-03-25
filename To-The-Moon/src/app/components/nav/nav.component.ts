@@ -10,9 +10,9 @@ import { User } from 'src/app/models/user.model';
 export class NavComponent implements OnInit {
 
   constructor(public appComponent: AppComponent ) { 
-    this.user=appComponent.user;
+  
   }
-  public user:User;
+ 
   ngOnInit(): void {
   }
 
