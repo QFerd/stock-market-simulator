@@ -1,50 +1,44 @@
 package com.revature.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.revature.models.Game;
 
 @Repository("gameRepository")
 @Transactional
-public class GameRepositoryImpl {
-
-}
-
-/*
- * public class UserRepositoryImpl implements UserRepository{
+public class GameRepositoryImpl implements GameRepository {
 	
-	private static Logger logger = Logger.getLogger(UserRepositoryImpl.class);
-
+	private static Logger logger = Logger.getLogger(GameRepositoryImpl.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public UserRepositoryImpl() {
+	public GameRepositoryImpl() {
 		logger.trace("Injection session factory bean");
 	}
-	
+
 	@Override
-	public void register(User user) {
-		logger.info("Attempting to register user.");
-		sessionFactory.getCurrentSession().save(user);
+	public void createOrUpdateGame(Game game) {
+		sessionFactory.getCurrentSession().saveOrUpdate(game);
+		
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	@Override
-	public List<User> getAllUsers() {
-		logger.info("Attempting to list all users.");
-		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
-	}
-
-	@Override
-	public User getUser(String username) {
+	public Game getGameState() {
 		try {
-			return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("username", username))
-					.list().get(0);
+			List<Game> gameList = (List<Game>) sessionFactory.getCurrentSession().createCriteria(Game.class).list();
+			return (Game) sessionFactory.getCurrentSession().createCriteria(Game.class).list().get(gameList.size());
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;
 		}
 	}
-
-}
- */
+	}

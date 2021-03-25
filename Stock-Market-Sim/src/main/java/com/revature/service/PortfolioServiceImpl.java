@@ -12,7 +12,7 @@ import com.revature.repository.PortfolioRepository;
 @Service("portfolioService")
 public class PortfolioServiceImpl implements PortfolioService{
 	
-private static Logger logger = Logger.getLogger(UserServiceImpl.class);
+private static Logger logger = Logger.getLogger(PortfolioServiceImpl.class);
 	
 	@Autowired
 	private PortfolioRepository portfolioRepository;
