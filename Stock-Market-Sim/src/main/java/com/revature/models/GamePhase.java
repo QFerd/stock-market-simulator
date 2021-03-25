@@ -43,6 +43,7 @@ public class GamePhase {
 
 
 	@Id
+	@Column(name="phase_id")
 	int phaseId;
 	
 	@Column(name="PHASE_NAME", unique=true, nullable=false)
