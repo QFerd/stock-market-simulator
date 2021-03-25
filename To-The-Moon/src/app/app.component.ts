@@ -9,5 +9,14 @@ import { User } from './models/user.model';
 export class AppComponent {
   title = 'To-The-Moon';
 
+  public user: User = new User(0, '', '');
 
+
+  public makeStudent():void {
+    this.user.role='Student';
+  }
+
+  public makeTeacher(): void {
+    this.user.role='Teacher';
+  }
 }

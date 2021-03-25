@@ -22,5 +22,10 @@ public class UserControllerImpl implements UserController{
 		userService.register(user);
 		return (user.getUserId() != 0) ? REGISTRATION_SUCCESSFUL:SOMETHING_WRONG;
 	}
+	@PostMapping("/login")
+	public @ResponseBody ClientMessage loginUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
