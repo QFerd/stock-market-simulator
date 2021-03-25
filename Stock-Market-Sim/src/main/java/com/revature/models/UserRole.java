@@ -48,10 +48,10 @@ public class UserRole {
 	@Id
 	@Column(name="role_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	int roleId;
+	private int roleId;
 	
 	@Column(name="ROLE_NAME", unique=true, nullable=false)
-	String roleName;
+	private String roleName;
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
