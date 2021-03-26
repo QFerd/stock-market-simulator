@@ -15,6 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+>>>>>>> 6437e34a0a09f8661af35bc92ced1d226dd62f4a
 @Entity
 @Table(name="USERS")
 public class User {
@@ -34,17 +42,26 @@ public class User {
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
 	//Link to UserRoles
-//	@JsonIgnore 
+	@JsonIgnore 
 	//Trying eager loading instead of JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="UserRole_FK")
 	private UserRole userRoleHolder;
 	
+	// I think that the user and portfolio is a ONE to ONE
+	// But position is Manyto ONe portfolio
+	
 	//Link to Portfolios
+<<<<<<< HEAD
 //	@JsonIgnore
 	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
 	@JoinColumn(name = "portfolio_id", referencedColumnName = "portfolio_id")
 	private Portfolio portfolio;
+=======
+	@JsonIgnore
+	@OneToMany(mappedBy="playerHolder", fetch= FetchType.LAZY)
+	private List<Portfolio> portfolioList = new ArrayList<Portfolio>();
+>>>>>>> 6437e34a0a09f8661af35bc92ced1d226dd62f4a
 	
 	
 	public User() {};
@@ -57,7 +74,15 @@ public class User {
 		this.password = password;
 		this.userRoleHolder = userRoleHolder;
 	}
+	
 
+	public User(int userId, String username, String password, List<Portfolio> portfolioList) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.portfolioList = portfolioList;
+	}
 
 
 	public User(int userId, String username, String password, UserRole userRoleHolder, Portfolio portfolio) {

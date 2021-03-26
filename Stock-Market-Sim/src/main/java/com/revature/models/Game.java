@@ -171,8 +171,10 @@ public class Game {
 	@Override
 	public String toString() {
 		return "Game [gameId=" + gameId + ", gameStartDate=" + gameStartDate + ", gameCurrentDate=" + gameCurrentDate
-				+ "]";
+				+ ", gamePhaseHolder=" + gamePhaseHolder + "]";
 	}
+
+	
 
 	
 }	

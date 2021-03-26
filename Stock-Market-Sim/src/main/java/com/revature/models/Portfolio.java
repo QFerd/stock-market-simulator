@@ -17,6 +17,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="PORTFOLIOS")
 public class Portfolio {
@@ -130,12 +134,21 @@ public class Portfolio {
 		this.positionList = positionList;
 	}
 
+	
+
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "Portfolio [portfolioId=" + portfolio_Id + ", totalValue=" + totalValue + ", stockValue=" + stockValue
 				+ ", cashValue=" + cashValue  + ", gameHolder=" + gameHolder
 				+ ", positionList=" + positionList + "]";
+=======
+		return "Portfolio [portfolioId=" + portfolioId + ", totalValue=" + totalValue + ", stockValue=" + stockValue
+				+ ", cashValue=" + cashValue + ", playerHolder=" + playerHolder + ", gameHolder=" + gameHolder + "]";
+>>>>>>> 6437e34a0a09f8661af35bc92ced1d226dd62f4a
 	}
+
+
 
 	@Override
 	public int hashCode() {
