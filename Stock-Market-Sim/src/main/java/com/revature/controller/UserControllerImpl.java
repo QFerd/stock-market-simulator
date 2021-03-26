@@ -24,7 +24,7 @@ public class UserControllerImpl implements UserController{
 	}
 	@PostMapping("/login")
 	public @ResponseBody ClientMessage loginUser() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
