@@ -5,8 +5,8 @@
             <input type="text" [(ngModel)]="loginTemplate.username" class="form-control" id="username-textbox">
         </div>
         <div class="form-group">
-            <label for="password-text">Username:</label>
-            <input type="text" [(ngModel)]="loginTemplate.password" class="form-control" id="password-text">
+            <label for="password-text">Password:</label>
+            <input type="password" [(ngModel)]="loginTemplate.password" class="form-control" id="password-text">
         </div>
-        <button class="btn btn-primary btn-center" (click)="login()">Login</button>
+        <button class="btn btn-primary btn-center" (click)="login()" routerLink="/home">Login</button>
 </div>
