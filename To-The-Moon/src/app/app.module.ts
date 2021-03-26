@@ -7,12 +7,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { User } from './models/user.model';
+import { HomeComponent } from './components/home/home.component';
+import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-home.component';
+import { TeacherComponent } from './components/teacher/teacher.component';
+import { PositionsComponent } from './positions/positions.component';
+import { StockComponent } from './components/stock/stock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    TeacherComponent,
+    TeacherHomeComponent,
+    PositionsComponent,
+    StockComponent
     
   ],
   imports: [
@@ -25,5 +35,4 @@ import { User } from './models/user.model';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  public user:User = new User(0,'','');
 }

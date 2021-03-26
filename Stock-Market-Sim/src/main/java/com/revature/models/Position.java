@@ -24,20 +24,18 @@ public class Position {
 	
 	
 
-	public Position(String stockSymbol, int quantity, Portfolio portfolioHolder) {
+	public Position(String stockSymbol, int quantity) {
 		super();
 		this.stockSymbol = stockSymbol;
 		this.quantity = quantity;
-		this.portfolioHolder = portfolioHolder;
 	}
 	
 
-	public Position(int positionId, String stockSymbol, int quantity, Portfolio portfolioHolder) {
+	public Position(int positionId, String stockSymbol, int quantity) {
 		super();
 		this.positionId = positionId;
 		this.stockSymbol = stockSymbol;
 		this.quantity = quantity;
-		this.portfolioHolder = portfolioHolder;
 	}
 
 
@@ -57,12 +55,9 @@ public class Position {
 	@Column(name="QUANTITY")
 	private int quantity;
 	
-	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
-	//Link to portfolios
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="User_FK")
-	private Portfolio portfolioHolder;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Portfolio portfolio;
 
 	public int getPositionId() {
 		return positionId;
@@ -88,25 +83,18 @@ public class Position {
 		this.quantity = quantity;
 	}
 
-	public Portfolio getPortfolioHolder() {
-		return portfolioHolder;
-	}
 
-	public void setPortfolioHolder(Portfolio portfolioHolder) {
-		this.portfolioHolder = portfolioHolder;
-	}
 
 	@Override
 	public String toString() {
 		return "Position [positionId=" + positionId + ", stockSymbol=" + stockSymbol + ", quantity=" + quantity
-				+ ", portfolioHolder=" + portfolioHolder + "]";
+				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((portfolioHolder == null) ? 0 : portfolioHolder.hashCode());
 		result = prime * result + positionId;
 		result = prime * result + quantity;
 		result = prime * result + ((stockSymbol == null) ? 0 : stockSymbol.hashCode());
@@ -122,11 +110,6 @@ public class Position {
 		if (getClass() != obj.getClass())
 			return false;
 		Position other = (Position) obj;
-		if (portfolioHolder == null) {
-			if (other.portfolioHolder != null)
-				return false;
-		} else if (!portfolioHolder.equals(other.portfolioHolder))
-			return false;
 		if (positionId != other.positionId)
 			return false;
 		if (quantity != other.quantity)
