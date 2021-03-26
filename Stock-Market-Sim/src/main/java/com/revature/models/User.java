@@ -16,7 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="USERS")
@@ -37,15 +40,18 @@ public class User {
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
 	//Link to UserRoles
-//	@JsonIgnore 
+	@JsonIgnore 
 	//Trying eager loading instead of JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="UserRole_FK")
 	private UserRole userRoleHolder;
 	
+	// I think that the user and portfolio is a ONE to ONE
+	// But position is Manyto ONe portfolio
+	
 	//Link to Portfolios
-//	@JsonIgnore
-	@OneToMany(mappedBy="playerHolder", fetch	= FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy="playerHolder", fetch= FetchType.LAZY)
 	private List<Portfolio> portfolioList = new ArrayList<Portfolio>();
 	
 	
@@ -59,7 +65,15 @@ public class User {
 		this.password = password;
 		this.userRoleHolder = userRoleHolder;
 	}
+	
 
+	public User(int userId, String username, String password, List<Portfolio> portfolioList) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.portfolioList = portfolioList;
+	}
 
 
 	public User(int userId, String username, String password, UserRole userRoleHolder, List<Portfolio> portfolioList) {

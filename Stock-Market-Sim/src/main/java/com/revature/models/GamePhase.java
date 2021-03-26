@@ -72,10 +72,13 @@ public class GamePhase {
 		this.gameList = gameList;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "GamePhase [phaseId=" + phaseId + ", phaseName=" + phaseName + ", gameList=" + gameList + "]";
+		return "GamePhase [phaseId=" + phaseId + ", phaseName=" + phaseName + "]";
 	}
+
 
 	@Override
 	public int hashCode() {

@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="USER_ROLES")
 public class UserRole {
@@ -56,6 +60,7 @@ public class UserRole {
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
 	//Link to Users
+	@JsonIgnore
 	@OneToMany(mappedBy="userRoleHolder", fetch	= FetchType.LAZY)
 	private List<User> userList = new ArrayList<User>();
 

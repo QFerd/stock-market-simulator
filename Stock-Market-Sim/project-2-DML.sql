@@ -18,4 +18,14 @@ insert into users (username, password, userrole_fk)
 			('Kyle', 'kpw', 2);
 
 delete from users where user_id = 4;
+
+
+update portfolios
+	set stock_value = 0 where portfolio_id = 1;
+
+insert into users (user_id, password, username, portfolio_id, userrole_fk)
+	values ('kpw', 'Kyle',)
+
+update portfolios
+	set stock_value = 0 where portfolio_id = 1;
 			
