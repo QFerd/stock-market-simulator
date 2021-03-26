@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-home.component';
+import { PositionsComponent } from './positions/positions.component';
+import { StockComponent } from './components/stock/stock.component';
 
 const routes: Routes = [
   { path: "", redirectTo: 'login', pathMatch: 'full' },
@@ -11,7 +13,9 @@ const routes: Routes = [
    { path: "teacher", component:TeacherComponent, children:[
      {path:"home", component:TeacherHomeComponent}
    ] },
-   { path: "home",component:HomeComponent}
+   { path: "home",component:HomeComponent},
+   { path: "postions", component:PositionsComponent},
+   { path:"stock/*",component:StockComponent}
 ];
 
 @NgModule({

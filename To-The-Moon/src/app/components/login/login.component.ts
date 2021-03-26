@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   public login(): void {
     this.userService.login(this.loginTemplate?.username,this.loginTemplate?.password)
     console.log(this.loginTemplate)
+
     if(this.appComponent.user.role=='Teacher')
     {
       window.location.href='teacher/home';
