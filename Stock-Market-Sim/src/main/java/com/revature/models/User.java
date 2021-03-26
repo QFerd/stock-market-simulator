@@ -79,9 +79,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", userRoleHolder="
-				+ userRoleHolder + ", portfolioList=" + portfolioList + "]";
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
 	}
+
 
 	public int getUserId() {
 		return userId;

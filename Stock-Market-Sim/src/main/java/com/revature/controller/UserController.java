@@ -6,5 +6,5 @@ import com.revature.models.User;
 public interface UserController {
 	ClientMessage registerUser(User user);
 	
-	ClientMessage loginUser();
+	ClientMessage loginUser(String username);
 }

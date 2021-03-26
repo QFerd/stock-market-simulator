@@ -22,21 +22,21 @@ public class TestDriver {
 	
 //	public static FoodRepo foodRepo = appContext.getBean("foodRepo", FoodRepo.class);
 	
-//	public static UserRepository userRepo = appContext.getBean("userRepository", UserRepository.class);
+	public static UserRepository userRepo = appContext.getBean("userRepository", UserRepository.class);
 	
 	public static GameRepository gameRepo = appContext.getBean("gameRepository", GameRepository.class);
 	
 	public static void main(String[] args) {
-		System.out.println(gameRepo.getGameState());
+		System.out.println(userRepo.getUser("JSmith"));
 		
 	}
 	
-//	public static void insertInitialTeacher() {
-//		
-//		User u = new User("Teach", "tpw", new UserRole(1));
-//		userRepo.register(u);
-//		
-//	}
+	public static void insertInitialTeacher() {
+		
+		User u = new User("Teach", "tpw", new UserRole(1));
+		userRepo.register(u);
+		
+	}
 	
 	public static void insertInitialGame() {
 		
@@ -48,4 +48,6 @@ public class TestDriver {
 		gameRepo.createOrUpdateGame(g);
 		
 	}
+	
+
 }
