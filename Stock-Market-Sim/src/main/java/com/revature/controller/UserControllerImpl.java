@@ -1,7 +1,10 @@
 package com.revature.controller;
 
+
 import static com.revature.util.ClientMessageUtil.REGISTRATION_SUCCESSFUL;
 import static com.revature.util.ClientMessageUtil.SOMETHING_WRONG;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,11 +29,10 @@ public class UserControllerImpl implements UserController{
 		return (user.getUserId() != 0) ? REGISTRATION_SUCCESSFUL:SOMETHING_WRONG;
 	}
 
-	@GetMapping("/login")
-	public @ResponseBody ClientMessage loginUser(@RequestBody String username) {
-		User user = userService.getUser(username);
-		return (user.getUserId() != 0) ? REGISTRATION_SUCCESSFUL:SOMETHING_WRONG;
-
+	@PostMapping("/login")
+	public @ResponseBody User loginUser(@RequestBody User user, HttpServletRequest request) {
+		request.getSession();
+		return userService.getUser(user.getUsername());
 	}
 
 }
