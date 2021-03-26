@@ -54,7 +54,11 @@ public class UserRole {
 	
 	@Column(name="ROLE_NAME", unique=true, nullable=false)
 	private String roleName;
-
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="userRoleHolder", fetch=FetchType.LAZY)
+	private List<User> users = new ArrayList<User>();
+	
 	public int getRoleId() {
 		return roleId;
 	}
@@ -77,7 +81,8 @@ public class UserRole {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + roleId;
-		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());		return result;
+		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());	
+		return result;
 	}
 
 	@Override

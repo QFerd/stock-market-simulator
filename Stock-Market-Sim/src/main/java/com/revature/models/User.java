@@ -33,12 +33,14 @@ public class User {
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
-	//Link to UserRoles
+	//Link to ints
 	//@JsonIgnore 
 	//Trying eager loading instead of JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="UserRole_FK")
-	private UserRole userRoleHolder;
+	@JoinColumn(name="int_FK")
+	private UserRole roleId;
+//	@Column(name="role_id",updatable=false,insertable=false)
+//	private int roleId1;
 	
 	// I think that the user and portfolio is a ONE to ONE
 	// But position is Manyto ONe portfolio
@@ -56,11 +58,11 @@ public class User {
 	
 	
 	//For creating new users
-	public User(String username, String password, UserRole userRoleHolder) {
+	public User(String username, String password, int roleId) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.userRoleHolder = userRoleHolder;
+		this.roleId = roleId;
 	}
 	
 
@@ -73,20 +75,20 @@ public class User {
 	}
 
 
-	public User(int userId, String username, String password, UserRole userRoleHolder, Portfolio portfolio) {
+	public User(int userId, String username, String password, int roleId, Portfolio portfolio) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
-		this.userRoleHolder = userRoleHolder;
+		this.roleId = roleId;
 		this.portfolio = portfolio;
 	}
 
-	public User(String username, String password, UserRole userRoleHolder, Portfolio portfolio) {
+	public User(String username, String password, int roleId, Portfolio portfolio) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.userRoleHolder = userRoleHolder;
+		this.roleId = roleId;
 		this.portfolio = portfolio;
 	}
 	
@@ -123,12 +125,12 @@ public class User {
 		this.password = password;
 	}
 
-	public UserRole getUserRoleHolder() {
-		return userRoleHolder;
+	public int getroleId() {
+		return roleId;
 	}
 
-	public void setUserRoleHolder(UserRole userRoleHolder) {
-		this.userRoleHolder = userRoleHolder;
+	public void setroleId(int roleId) {
+		this.roleId = roleId;
 	}
 
 	public Portfolio getportfolio() {
@@ -138,6 +140,7 @@ public class User {
 	public void setportfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -145,11 +148,12 @@ public class User {
 		int result = 1;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
+		result = prime * result + roleId;
 		result = prime * result + userId;
-		result = prime * result + ((userRoleHolder == null) ? 0 : userRoleHolder.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -170,12 +174,9 @@ public class User {
 				return false;
 		} else if (!portfolio.equals(other.portfolio))
 			return false;
-		if (userId != other.userId)
+		if (roleId != other.roleId)
 			return false;
-		if (userRoleHolder == null) {
-			if (other.userRoleHolder != null)
-				return false;
-		} else if (!userRoleHolder.equals(other.userRoleHolder))
+		if (userId != other.userId)
 			return false;
 		if (username == null) {
 			if (other.username != null)
