@@ -1,6 +1,5 @@
 package com.revature.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,14 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="USERS")
@@ -40,7 +34,7 @@ public class User {
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
 	//Link to UserRoles
-	@JsonIgnore 
+	//@JsonIgnore 
 	//Trying eager loading instead of JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="UserRole_FK")
@@ -50,9 +44,12 @@ public class User {
 	// But position is Manyto ONe portfolio
 	
 	//Link to Portfolios
-	@JsonIgnore
-	@OneToMany(mappedBy="playerHolder", fetch= FetchType.LAZY)
-	private List<Portfolio> portfolioList = new ArrayList<Portfolio>();
+
+//	@JsonIgnore
+	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
+	@JoinColumn(name = "portfolio_id", referencedColumnName = "portfolio_id")
+	private Portfolio portfolio;
+
 	
 	
 	public User() {};
@@ -67,30 +64,30 @@ public class User {
 	}
 	
 
-	public User(int userId, String username, String password, List<Portfolio> portfolioList) {
+	public User(int userId, String username, String password, Portfolio portfolio) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
-		this.portfolioList = portfolioList;
+		this.portfolio = portfolio;
 	}
 
 
-	public User(int userId, String username, String password, UserRole userRoleHolder, List<Portfolio> portfolioList) {
+	public User(int userId, String username, String password, UserRole userRoleHolder, Portfolio portfolio) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.userRoleHolder = userRoleHolder;
-		this.portfolioList = portfolioList;
+		this.portfolio = portfolio;
 	}
 
-	public User(String username, String password, UserRole userRoleHolder, List<Portfolio> portfolioList) {
+	public User(String username, String password, UserRole userRoleHolder, Portfolio portfolio) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.userRoleHolder = userRoleHolder;
-		this.portfolioList = portfolioList;
+		this.portfolio = portfolio;
 	}
 	
 	
@@ -134,12 +131,12 @@ public class User {
 		this.userRoleHolder = userRoleHolder;
 	}
 
-	public List<Portfolio> getPortfolioList() {
-		return portfolioList;
+	public Portfolio getportfolio() {
+		return portfolio;
 	}
 
-	public void setPortfolioList(List<Portfolio> portfolioList) {
-		this.portfolioList = portfolioList;
+	public void setportfolio(Portfolio portfolio) {
+		this.portfolio = portfolio;
 	}
 
 	@Override
@@ -147,7 +144,7 @@ public class User {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((portfolioList == null) ? 0 : portfolioList.hashCode());
+		result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((userRoleHolder == null) ? 0 : userRoleHolder.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -168,10 +165,10 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (portfolioList == null) {
-			if (other.portfolioList != null)
+		if (portfolio == null) {
+			if (other.portfolio != null)
 				return false;
-		} else if (!portfolioList.equals(other.portfolioList))
+		} else if (!portfolio.equals(other.portfolio))
 			return false;
 		if (userId != other.userId)
 			return false;

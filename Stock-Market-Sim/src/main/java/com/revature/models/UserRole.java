@@ -35,14 +35,12 @@ public class UserRole {
 	public UserRole(String roleName, List<User> userList) {
 		super();
 		this.roleName = roleName;
-		this.userList = userList;
 	}
 
 	public UserRole(int roleId, String roleName, List<User> userList) {
 		super();
 		this.roleId = roleId;
 		this.roleName = roleName;
-		this.userList = userList;
 	}
 
 
@@ -56,13 +54,6 @@ public class UserRole {
 	
 	@Column(name="ROLE_NAME", unique=true, nullable=false)
 	private String roleName;
-	
-	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
-	
-	//Link to Users
-	@JsonIgnore
-	@OneToMany(mappedBy="userRoleHolder", fetch	= FetchType.LAZY)
-	private List<User> userList = new ArrayList<User>();
 
 	public int getRoleId() {
 		return roleId;
@@ -80,22 +71,13 @@ public class UserRole {
 		this.roleName = roleName;
 	}
 
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + roleId;
-		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
-		result = prime * result + ((userList == null) ? 0 : userList.hashCode());
-		return result;
+		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());		return result;
 	}
 
 	@Override
@@ -114,17 +96,12 @@ public class UserRole {
 				return false;
 		} else if (!roleName.equals(other.roleName))
 			return false;
-		if (userList == null) {
-			if (other.userList != null)
-				return false;
-		} else if (!userList.equals(other.userList))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole [roleId=" + roleId + ", roleName=" + roleName + ", userList=" + userList + "]";
+		return "UserRole [roleId=" + roleId + ", roleName=" + roleName + "]";
 	}
 	
 	
