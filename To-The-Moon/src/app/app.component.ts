@@ -8,8 +8,11 @@ import { User } from './models/user.model';
 })
 export class AppComponent {
   title = 'To-The-Moon';
+  constructor() {
+    this.user= new User(0, '', '');
+  }
 
-  public user: User = new User(0, '', '');
+  user: User 
 
 
   public makeStudent():void {

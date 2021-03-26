@@ -31,5 +31,4 @@ import { TeacherComponent } from './components/teacher/teacher.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  public user:User = new User(0,'','Student');
 }
