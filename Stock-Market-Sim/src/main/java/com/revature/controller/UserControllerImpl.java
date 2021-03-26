@@ -25,8 +25,7 @@ public class UserControllerImpl implements UserController{
 		userService.register(user);
 		return (user.getUserId() != 0) ? REGISTRATION_SUCCESSFUL:SOMETHING_WRONG;
 	}
-	
-	
+
 	@GetMapping("/login")
 	public @ResponseBody ClientMessage loginUser(@RequestBody String username) {
 		User user = userService.getUser(username);
