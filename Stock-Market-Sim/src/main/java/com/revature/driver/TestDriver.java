@@ -32,9 +32,9 @@ public class TestDriver {
 	}
 	
 	public static void insertInitialTeacher() {
-		
-		User u = new User("Teach", "tpw", new UserRole(1));
-		userRepo.register(u);
+//		
+////		User u = new User("Teach", "tpw", new UserRole(1));
+//		userRepo.register(u);
 		
 	}
 	
