@@ -10,6 +10,8 @@ import { User } from './models/user.model';
 import { HomeComponent } from './components/home/home.component';
 import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-home.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
+import { PositionsComponent } from './positions/positions.component';
+import { StockComponent } from './components/stock/stock.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TeacherComponent } from './components/teacher/teacher.component';
     LoginComponent,
     HomeComponent,
     TeacherComponent,
-    TeacherHomeComponent
+    TeacherHomeComponent,
+    PositionsComponent,
+    StockComponent
     
   ],
   imports: [
