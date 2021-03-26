@@ -18,15 +18,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="GAME")
 public class Game {
 	
 	
 	
-	public Game() {
-		super();
-	}
+	public Game() {}
 	
 	public Game(LocalDate gameStartDate, LocalDate gameCurrentDate, GamePhase gamePhaseHolder) {
 		super();
@@ -63,9 +63,11 @@ public class Game {
 	@SequenceGenerator(name="gameSequence", sequenceName="GAME_SEQ", allocationSize=1)
 	private int gameId;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name="GAME_START_DATE", nullable=false)
 	private LocalDate gameStartDate;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name="GAME_CURRENT_DATE", nullable=false)
 	private LocalDate gameCurrentDate;
 	
