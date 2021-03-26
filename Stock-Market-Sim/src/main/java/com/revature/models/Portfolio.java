@@ -138,14 +138,10 @@ public class Portfolio {
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
 		return "Portfolio [portfolioId=" + portfolio_Id + ", totalValue=" + totalValue + ", stockValue=" + stockValue
 				+ ", cashValue=" + cashValue  + ", gameHolder=" + gameHolder
 				+ ", positionList=" + positionList + "]";
-=======
-		return "Portfolio [portfolioId=" + portfolioId + ", totalValue=" + totalValue + ", stockValue=" + stockValue
-				+ ", cashValue=" + cashValue + ", playerHolder=" + playerHolder + ", gameHolder=" + gameHolder + "]";
->>>>>>> 6437e34a0a09f8661af35bc92ced1d226dd62f4a
+
 	}
 
 

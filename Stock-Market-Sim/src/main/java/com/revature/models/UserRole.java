@@ -54,16 +54,6 @@ public class UserRole {
 	
 	@Column(name="ROLE_NAME", unique=true, nullable=false)
 	private String roleName;
-<<<<<<< HEAD
-=======
-	
-	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
-	
-	//Link to Users
-	@JsonIgnore
-	@OneToMany(mappedBy="userRoleHolder", fetch	= FetchType.LAZY)
-	private List<User> userList = new ArrayList<User>();
->>>>>>> 6437e34a0a09f8661af35bc92ced1d226dd62f4a
 
 	public int getRoleId() {
 		return roleId;
