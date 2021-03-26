@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,27 +29,25 @@ public class Portfolio {
 	
 	
 
-	public Portfolio(double totalValue, double stockValue, double cashValue, User playerHolder, Game gameHolder,
+	public Portfolio(double totalValue, double stockValue, double cashValue, Game gameHolder,
 			List<Position> positionList) {
 		super();
 		this.totalValue = totalValue;
 		this.stockValue = stockValue;
 		this.cashValue = cashValue;
-		this.playerHolder = playerHolder;
 		this.gameHolder = gameHolder;
 		this.positionList = positionList;
 	}
 
 
 
-	public Portfolio(int portfolioId, double totalValue, double stockValue, double cashValue, User playerHolder,
+	public Portfolio(int portfolioId, double totalValue, double stockValue, double cashValue,
 			Game gameHolder, List<Position> positionList) {
 		super();
-		this.portfolioId = portfolioId;
+		this.portfolio_Id = portfolioId;
 		this.totalValue = totalValue;
 		this.stockValue = stockValue;
 		this.cashValue = cashValue;
-		this.playerHolder = playerHolder;
 		this.gameHolder = gameHolder;
 		this.positionList = positionList;
 	}
@@ -57,7 +56,7 @@ public class Portfolio {
 	@Column(name="portfolio_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="portfolioSequence")
 	@SequenceGenerator(name="portfolioSequence", sequenceName="PORTFOLIO_SEQ", allocationSize=1)
-	private int portfolioId;
+	private int portfolio_Id;
 	
 	@Column(name="TOTAL_VALUE")
 	private double totalValue;
@@ -70,26 +69,25 @@ public class Portfolio {
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
-	//Link to Users
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="User_FK")
-	private User playerHolder;
-	
 	//Link to Games
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="Game_FK")
 	private Game gameHolder;
 	
+	@OneToOne(mappedBy = "portfolio")
+	private User user;
+	
 	//Link to position
-	@OneToMany(mappedBy="portfolioHolder", fetch = FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="portfolio_id_fk")
 	private List<Position> positionList = new ArrayList<Position>();
 
 	public int getPortfolioId() {
-		return portfolioId;
+		return portfolio_Id;
 	}
 
 	public void setPortfolioId(int portfolioId) {
-		this.portfolioId = portfolioId;
+		this.portfolio_Id = portfolioId;
 	}
 
 	public double getTotalValue() {
@@ -116,14 +114,6 @@ public class Portfolio {
 		this.cashValue = cashValue;
 	}
 
-	public User getPlayerHolder() {
-		return playerHolder;
-	}
-
-	public void setPlayerHolder(User playerHolder) {
-		this.playerHolder = playerHolder;
-	}
-
 	public Game getGameHolder() {
 		return gameHolder;
 	}
@@ -142,8 +132,8 @@ public class Portfolio {
 
 	@Override
 	public String toString() {
-		return "Portfolio [portfolioId=" + portfolioId + ", totalValue=" + totalValue + ", stockValue=" + stockValue
-				+ ", cashValue=" + cashValue + ", playerHolder=" + playerHolder + ", gameHolder=" + gameHolder
+		return "Portfolio [portfolioId=" + portfolio_Id + ", totalValue=" + totalValue + ", stockValue=" + stockValue
+				+ ", cashValue=" + cashValue  + ", gameHolder=" + gameHolder
 				+ ", positionList=" + positionList + "]";
 	}
 
@@ -155,8 +145,7 @@ public class Portfolio {
 		temp = Double.doubleToLongBits(cashValue);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((gameHolder == null) ? 0 : gameHolder.hashCode());
-		result = prime * result + ((playerHolder == null) ? 0 : playerHolder.hashCode());
-		result = prime * result + portfolioId;
+		result = prime * result + portfolio_Id;
 		result = prime * result + ((positionList == null) ? 0 : positionList.hashCode());
 		temp = Double.doubleToLongBits(stockValue);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -181,12 +170,8 @@ public class Portfolio {
 				return false;
 		} else if (!gameHolder.equals(other.gameHolder))
 			return false;
-		if (playerHolder == null) {
-			if (other.playerHolder != null)
-				return false;
-		} else if (!playerHolder.equals(other.playerHolder))
-			return false;
-		if (portfolioId != other.portfolioId)
+
+		if (portfolio_Id != other.portfolio_Id)
 			return false;
 		if (positionList == null) {
 			if (other.positionList != null)

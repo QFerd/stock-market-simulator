@@ -22,7 +22,8 @@ export class UserServiceService {
       'password': password
     }
     var output = this.http.post<User>(`${TO_THE_MOON_URL}login`, loginTemplate , this.httpOptions);
-    output.subscribe(data => localStorage.setItem('User',JSON.stringify(data)))
+    console.log(output);
+    output.subscribe(data => {console.log(data);localStorage.setItem('User',JSON.stringify(data))})
     return output;
   }
 }
