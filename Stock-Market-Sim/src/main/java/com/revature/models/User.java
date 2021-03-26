@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="USERS")
 public class User {
@@ -35,12 +37,15 @@ public class User {
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
 	//Link to UserRoles
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JsonIgnore 
+	//Trying eager loading instead of JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="UserRole_FK")
 	private UserRole userRoleHolder;
 	
 	//Link to Portfolios
-	@OneToMany(mappedBy="playerHolder", fetch	= FetchType.LAZY)
+//	@JsonIgnore
+	@OneToMany(mappedBy="playerHolder", fetch	= FetchType.EAGER)
 	private List<Portfolio> portfolioList = new ArrayList<Portfolio>();
 	
 	
