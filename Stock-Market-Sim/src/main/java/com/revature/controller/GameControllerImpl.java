@@ -29,27 +29,18 @@ public class GameControllerImpl implements GameController {
 	@Autowired
 	private GameService gameService;
 
-	@PostMapping("/setgame")
-	public @ResponseBody ClientMessage setGame(@RequestBody Game game) {
+	@PostMapping("/setGame")
+	public @ResponseBody void setGame(@RequestBody Game game) {
 		gameService.createOrUpdateGame(game);
-		return (game.getGameId() != 0) ? REGISTRATION_SUCCESSFUL:SOMETHING_WRONG;
+
 	}
 	
-	@PostMapping("/setGame")
-	public @ResponseBody void setGameTest(@RequestBody HttpServletRequest request) throws IOException {
-		BufferedReader reader = request.getReader();
-		StringBuilder s = new StringBuilder();
-		
-		String line = reader.readLine();
-		while (line != null) {
-			s.append(line);
-			line = reader.readLine();
-		}
-		
-		String body = s.toString();
-		
-		Game game = om.readValue(body, Game.class);
+	@PostMapping("/getGame")
+	public @ResponseBody Game getGame() {
+		return gameService.getGameState();
+
 	}
+
 
 	
 }

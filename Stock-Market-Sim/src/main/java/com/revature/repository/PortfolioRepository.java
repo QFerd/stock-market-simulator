@@ -15,6 +15,6 @@ public interface PortfolioRepository {
 	
 	double getCashValue(User user, Game game);
 
-	Portfolio getPortfolio(User user, Game game);
+	Portfolio getPortfolio(User user);
 
 }

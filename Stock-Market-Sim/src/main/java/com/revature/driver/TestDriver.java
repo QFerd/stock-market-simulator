@@ -41,13 +41,7 @@ public class TestDriver {
 	
 	public static void insertInitialGame() {
 		
-		LocalDate date = LocalDate.of(2014, 1, 1);
-		 
-		System.out.println(date);
-		
-		Game g = new Game(date, date, new GamePhase(1, "First Month"));
-		gameRepo.createOrUpdateGame(g);
-		
+
 	}
 	
 

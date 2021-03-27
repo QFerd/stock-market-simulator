@@ -51,11 +51,11 @@ public class PortfolioRepositoryImpl implements PortfolioRepository{
 	}
 
 	@Override
-	public Portfolio getPortfolio(User user, Game game) {
+	public Portfolio getPortfolio(User user) {
 		try {
 			int uid = user.getUserId();
-			int gid = game.getGameId();
-			return (Portfolio) sessionFactory.getCurrentSession().createCriteria(Portfolio.class).add(Restrictions.like("player_id", uid)).add(Restrictions.like("game_id", gid)).list().get(0);
+	
+			return (Portfolio) sessionFactory.getCurrentSession().createCriteria(Portfolio.class).add(Restrictions.like("player_id", uid)).list().get(0);
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;

@@ -33,26 +33,23 @@ public class Portfolio {
 	
 	
 
-	public Portfolio(double totalValue, double stockValue, double cashValue, Game gameHolder,
+	public Portfolio(double totalValue, double stockValue, double cashValue,
 			List<Position> positionList) {
 		super();
 		this.totalValue = totalValue;
 		this.stockValue = stockValue;
 		this.cashValue = cashValue;
-		this.gameHolder = gameHolder;
 		this.positionList = positionList;
 	}
 
 
 
-	public Portfolio(int portfolioId, double totalValue, double stockValue, double cashValue,
-			Game gameHolder, List<Position> positionList) {
+	public Portfolio(int portfolioId, double totalValue, double stockValue, double cashValue, List<Position> positionList) {
 		super();
 		this.portfolio_Id = portfolioId;
 		this.totalValue = totalValue;
 		this.stockValue = stockValue;
 		this.cashValue = cashValue;
-		this.gameHolder = gameHolder;
 		this.positionList = positionList;
 	}
 	
@@ -73,10 +70,8 @@ public class Portfolio {
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
-	//Link to Games
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="Game_FK")
-	private Game gameHolder;
+	//Link to Games deleted
+
 	
 	@OneToOne(mappedBy = "portfolio")
 	private User user;
@@ -118,13 +113,7 @@ public class Portfolio {
 		this.cashValue = cashValue;
 	}
 
-	public Game getGameHolder() {
-		return gameHolder;
-	}
 
-	public void setGameHolder(Game gameHolder) {
-		this.gameHolder = gameHolder;
-	}
 
 	public List<Position> getPositionList() {
 		return positionList;
@@ -139,7 +128,7 @@ public class Portfolio {
 	@Override
 	public String toString() {
 		return "Portfolio [portfolioId=" + portfolio_Id + ", totalValue=" + totalValue + ", stockValue=" + stockValue
-				+ ", cashValue=" + cashValue  + ", gameHolder=" + gameHolder
+				+ ", cashValue=" + cashValue  
 				+ ", positionList=" + positionList + "]";
 
 	}
@@ -153,15 +142,17 @@ public class Portfolio {
 		long temp;
 		temp = Double.doubleToLongBits(cashValue);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((gameHolder == null) ? 0 : gameHolder.hashCode());
 		result = prime * result + portfolio_Id;
 		result = prime * result + ((positionList == null) ? 0 : positionList.hashCode());
 		temp = Double.doubleToLongBits(stockValue);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(totalValue);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -174,12 +165,6 @@ public class Portfolio {
 		Portfolio other = (Portfolio) obj;
 		if (Double.doubleToLongBits(cashValue) != Double.doubleToLongBits(other.cashValue))
 			return false;
-		if (gameHolder == null) {
-			if (other.gameHolder != null)
-				return false;
-		} else if (!gameHolder.equals(other.gameHolder))
-			return false;
-
 		if (portfolio_Id != other.portfolio_Id)
 			return false;
 		if (positionList == null) {
@@ -191,9 +176,16 @@ public class Portfolio {
 			return false;
 		if (Double.doubleToLongBits(totalValue) != Double.doubleToLongBits(other.totalValue))
 			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
-	
+
+
+
 	
 	
 }

@@ -7,5 +7,7 @@ import com.revature.models.Game;
 
 public interface GameController {
 	//CRUD
-	ClientMessage setGame(Game game);
+	public void setGame(Game game);
+	
+	public Game getGame();
 }
