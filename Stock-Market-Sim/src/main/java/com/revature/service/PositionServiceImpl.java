@@ -16,21 +16,12 @@ public class PositionServiceImpl implements PositionService{
 	@Autowired
 	PositionRepository positionRepository;
 
-	@Override
-	public List<Position> getPositionsForUser(User user) {
-		positionRepository.getPositionsForUser(user);
-		return null;
-	}
-
-	@Override
-	public Position getPosition(User user, Game game, String stockSymbol) {
-		positionRepository.getPosition(user, game, stockSymbol);
-		return null;
-	}
 
 	@Override
 	public void createOrUpdatePosition(Position position) {
 		positionRepository.createOrUpdatePosition(position);
 	}
+
+
 
 }

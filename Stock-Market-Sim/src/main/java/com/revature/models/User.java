@@ -40,8 +40,20 @@ public class User {
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
+	// Link to Games
+	
 
-	//Link to UserRoles
+	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
+	@JoinColumn(name = "game_id", referencedColumnName = "game_id")
+	private Game game;
+
+	//Link to portfolios
+	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
+	@JoinColumn(name = "portfolio_id", referencedColumnName = "portfolio_id")
+	private Portfolio portfolio;
+	
+	
+	//Link to UserRoles -- user role table deleted
 //	@JsonIgnore 
 	//Trying eager loading instead of JsonIgnore
 //	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
@@ -58,13 +70,12 @@ public class User {
 	
 	//Link to Portfolios
 
-//	@JsonIgnore
-	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
-	@JoinColumn(name = "portfolio_id", referencedColumnName = "portfolio_id")
-	private Portfolio portfolio;
+
 
 	
-	
+
+
+
 	public User() {};
 	
 	
@@ -99,10 +110,6 @@ public class User {
 
 
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
-	}
 
 
 	
@@ -156,18 +163,25 @@ public class User {
 		this.portfolio = portfolio;
 	}
 	
+	public Game getGame() {
+		return game;
+	}
+
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((game == null) ? 0 : game.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
-		result = prime * result + roleId;
 		result = prime * result + userId;
 		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
-
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -182,6 +196,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (game == null) {
+			if (other.game != null)
+				return false;
+		} else if (!game.equals(other.game))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -192,13 +211,12 @@ public class User {
 				return false;
 		} else if (!portfolio.equals(other.portfolio))
 			return false;
-		if (roleId != other.roleId)
+		if (userId != other.userId)
 			return false;
 		if (userRole == null) {
 			if (other.userRole != null)
 				return false;
 		} else if (!userRole.equals(other.userRole))
-
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -208,6 +226,12 @@ public class User {
 		return true;
 	}
 
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
+	}
+	
 	
 	
 	
