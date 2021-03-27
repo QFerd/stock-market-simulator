@@ -1,0 +1,9 @@
+<h2>Positions</h2>
+
+<div *ngIf="position">
+    <h2>{{position.stock_symbol | uppercase}}</h2>
+    <div><span>Position Rank: </span>{{position.position_id}}</div>
+    <div><span>Stock Symbol: </span>{{position.stock_symbol}}</div>
+    <div><span>Quantity: </span>{{position.quantity}}</div>
+    <div><span>Gain/Loss: </span> x </div>
+</div>

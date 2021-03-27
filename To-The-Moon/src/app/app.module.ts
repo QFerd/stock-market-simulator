@@ -12,6 +12,8 @@ import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { PositionsComponent } from './positions/positions.component';
 import { StockComponent } from './components/stock/stock.component';
+import { PositionDetailComponent } from './position-detail/position-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { StockComponent } from './components/stock/stock.component';
     TeacherComponent,
     TeacherHomeComponent,
     PositionsComponent,
-    StockComponent
+    StockComponent,
+    PositionDetailComponent,
+    MessagesComponent
     
   ],
   imports: [

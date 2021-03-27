@@ -8,13 +8,18 @@
                 <th scope="col-3">Gain/Loss ($)</th>
             </tr>
         </thead>
-        <tbody >
-            <tr *ngFor="let position of positions">
+        <tbody>
+            <tr *ngFor="let position of positions" (click)="onSelect(position)">
                 <th scope="row">{{position.stock_symbol}}</th>
                 <td>{{position.quantity}}</td>
                 <td>{{null}}</td>
             </tr>
-            
+
         </tbody>
     </table>
+
 </div>
+
+    <app-position-detail [position]="selectedPosition"></app-position-detail>
+
+
