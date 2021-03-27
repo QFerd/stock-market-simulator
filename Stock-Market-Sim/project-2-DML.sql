@@ -9,8 +9,8 @@ insert into game (game_id, start_date, phase)
 insert into portfolios (portfolio_id, cash_value, stock_value, total_value)
 	values (1, 5, 0, 5);
 
-insert into users (user_id, password, username, user_role, game_id, portfolio_id)
-	values (1, 'kpw', 'Kyle', 'Student', 1, 1 );
+insert into users (user_id, password, username, user_role, game_id_fk, game_game_id, portfolio_id)
+	values (1, 'kpw', 'Kyle', 'Student', 1, 1, 1 );
 
 
 

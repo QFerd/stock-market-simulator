@@ -41,10 +41,7 @@ public class User {
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
 	// Link to Games
-	
-
-	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
-	@JoinColumn(name = "game_id", referencedColumnName = "game_id")
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Game game;
 
 	//Link to portfolios

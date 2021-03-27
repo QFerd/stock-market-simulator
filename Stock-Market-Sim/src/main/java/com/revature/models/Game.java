@@ -40,8 +40,9 @@ public class Game {
 	
 	//-------------------FK/PK RELATIONSHIPS
 	@JsonIgnore
-	@OneToOne(mappedBy="game")
-	private User user;
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="game_id_fk")
+	private List<User> gameList = new ArrayList<User>();
 	
 
 	
@@ -84,24 +85,36 @@ public class Game {
 		this.phase = phase;
 	}
 
-	public User getUser() {
-		return user;
+	
+
+
+
+
+	
+
+	public List<User> getGameList() {
+		return gameList;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+
+
+	public void setGameList(List<User> gameList) {
+		this.gameList = gameList;
 	}
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + gameId;
+		result = prime * result + ((gameList == null) ? 0 : gameList.hashCode());
 		result = prime * result + phase;
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -114,6 +127,11 @@ public class Game {
 		Game other = (Game) obj;
 		if (gameId != other.gameId)
 			return false;
+		if (gameList == null) {
+			if (other.gameList != null)
+				return false;
+		} else if (!gameList.equals(other.gameList))
+			return false;
 		if (phase != other.phase)
 			return false;
 		if (startDate == null) {
@@ -121,13 +139,10 @@ public class Game {
 				return false;
 		} else if (!startDate.equals(other.startDate))
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
 		return true;
 	}
+
+
 
 	@Override
 	public String toString() {
