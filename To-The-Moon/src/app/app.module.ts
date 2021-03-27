@@ -13,6 +13,7 @@ import { TeacherComponent } from './components/teacher/teacher.component';
 import { PositionsComponent } from './positions/positions.component';
 import { StockComponent } from './components/stock/stock.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { StockComponent } from './components/stock/stock.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
