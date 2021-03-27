@@ -35,6 +35,7 @@ public class TestDriver {
 		
 		User u = new User("Teach", "tpw", "Teacher");
 		userRepo.register(u);
+
 		
 	}
 	

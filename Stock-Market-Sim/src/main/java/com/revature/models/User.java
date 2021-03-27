@@ -40,7 +40,7 @@ public class User {
 	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
-	
+
 	//Link to UserRoles
 //	@JsonIgnore 
 	//Trying eager loading instead of JsonIgnore
@@ -51,6 +51,7 @@ public class User {
 	//No need for this:
 //	@Column(name="UserRole_FK", updatable=false, insertable=false)
 //	private int userRole;
+
 	
 	// I think that the user and portfolio is a ONE to ONE
 	// But position is Manyto ONe portfolio
@@ -68,6 +69,7 @@ public class User {
 	
 	
 	//For creating new users
+
 	public User(String username, String password) {
 		super();
 		this.username = username;
@@ -84,7 +86,9 @@ public class User {
 	}
 
 
+
 	public User(int userId, String username, String password, String userRole, Portfolio portfolio) {
+
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -92,6 +96,7 @@ public class User {
 		this.userRole = userRole;
 		this.portfolio = portfolio;
 	}
+
 
 
 	@Override
@@ -138,6 +143,7 @@ public class User {
 
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
+
 	}
 
 
@@ -149,6 +155,7 @@ public class User {
 	public void setPortfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
 	}
+	
 
 
 	@Override
@@ -157,8 +164,10 @@ public class User {
 		int result = 1;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
+		result = prime * result + roleId;
 		result = prime * result + userId;
 		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
+
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -183,12 +192,13 @@ public class User {
 				return false;
 		} else if (!portfolio.equals(other.portfolio))
 			return false;
-		if (userId != other.userId)
+		if (roleId != other.roleId)
 			return false;
 		if (userRole == null) {
 			if (other.userRole != null)
 				return false;
 		} else if (!userRole.equals(other.userRole))
+
 			return false;
 		if (username == null) {
 			if (other.username != null)
