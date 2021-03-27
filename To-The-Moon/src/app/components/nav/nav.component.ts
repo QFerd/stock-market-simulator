@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/user.model';
 
@@ -9,10 +9,14 @@ import { User } from 'src/app/models/user.model';
 })
 export class NavComponent implements OnInit {
 
+
+   user= this.appComponent.getUser(); 
   constructor(public appComponent: AppComponent ) { 
+    
   }
  
   ngOnInit(): void {
+    console.log(this.user);
     console.log(this.appComponent.user);
   }
 }
