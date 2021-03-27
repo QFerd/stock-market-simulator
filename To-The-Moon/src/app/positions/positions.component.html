@@ -9,10 +9,10 @@
             </tr>
         </thead>
         <tbody >
-            <tr >
-                <th scope="row">AAPL</th>
-                <td>10</td>
-                <td>200</td>
+            <tr *ngFor="let position of positions">
+                <th scope="row">{{position.stock_symbol}}</th>
+                <td>{{position.quantity}}</td>
+                <td>{{null}}</td>
             </tr>
             
         </tbody>

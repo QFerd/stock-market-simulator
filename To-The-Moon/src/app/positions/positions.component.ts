@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { POSITIONS } from '../mock-positions';
 
 @Component({
   selector: 'app-positions',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./positions.component.css']
 })
 export class PositionsComponent implements OnInit {
+
+  positions = POSITIONS;
 
   constructor() { }
 
