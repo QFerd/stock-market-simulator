@@ -2,6 +2,7 @@ package com.revature.controller;
 
 
 import static com.revature.util.ClientMessageUtil.REGISTRATION_SUCCESSFUL;
+
 import static com.revature.util.ClientMessageUtil.SOMETHING_WRONG;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,12 @@ public class UserControllerImpl implements UserController{
 	public @ResponseBody User loginUser(@RequestBody User user, HttpServletRequest request) {
 		request.getSession();
 		return userService.getUser(user.getUsername());
+	}
+	
+	@PostMapping("/userId")
+	public @ResponseBody String getUserId(@RequestBody User user, HttpServletRequest request) {
+		request.getSession();
+		return userService.getUser(user.getUsername()).getUserRole();
 	}
 
 }
