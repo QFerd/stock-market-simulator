@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Game;
+import com.revature.models.User;
 import com.revature.repository.GameRepository;
 
 import jdk.internal.org.jline.utils.Log;
@@ -25,13 +26,13 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public Game getGameState() {
+	public Game getGame(int gameId) {
 		try {
-		return gameRepository.getGameState();
-	} catch (Exception ex) {
-		ex.printStackTrace();
+			return gameRepository.getGame(gameId);
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		return null;
-	}
-	}
+		}
 
+	}
 }

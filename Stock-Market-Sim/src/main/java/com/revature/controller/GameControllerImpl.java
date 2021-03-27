@@ -36,11 +36,10 @@ public class GameControllerImpl implements GameController {
 	}
 	
 	@PostMapping("/getGame")
-	public @ResponseBody Game getGame() {
-		return gameService.getGameState();
+	public @ResponseBody Game getGame(@RequestBody User user, HttpServletRequest request) {
+		request.getSession();
+		return gameService.getGame(user.getGame().getGameId());
 
 	}
-
-
 	
 }

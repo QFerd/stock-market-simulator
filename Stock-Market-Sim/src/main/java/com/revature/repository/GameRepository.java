@@ -6,7 +6,7 @@ public interface GameRepository {
 	
 	public void createOrUpdateGame(Game game);
 	
-	public Game getGameState();
+	public Game getGame(int userId);
 	
 
 }

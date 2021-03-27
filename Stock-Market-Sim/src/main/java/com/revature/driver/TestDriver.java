@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.revature.models.Game;
-import com.revature.models.GamePhase;
 import com.revature.models.User;
 import com.revature.repository.GameRepository;
 import com.revature.repository.GameRepositoryImpl;

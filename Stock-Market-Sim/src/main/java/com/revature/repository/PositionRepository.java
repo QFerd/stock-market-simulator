@@ -8,9 +8,6 @@ import com.revature.models.User;
 
 public interface PositionRepository {
 	
-	public List<Position> getPositionsForUser(User user);
-
-	Position getPosition(User user, Game game, String stockSymbol);
 
 	void createOrUpdatePosition(Position position);
 
