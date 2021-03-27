@@ -17,8 +17,8 @@ public class PositionServiceImpl implements PositionService{
 	PositionRepository positionRepository;
 
 	@Override
-	public List<Position> getPositionsForUser(User user, Game game) {
-		positionRepository.getPositionsForUser(user, game);
+	public List<Position> getPositionsForUser(User user) {
+		positionRepository.getPositionsForUser(user);
 		return null;
 	}
 

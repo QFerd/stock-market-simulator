@@ -28,4 +28,7 @@ insert into users (user_id, password, username, portfolio_id, userrole_fk)
 
 update portfolios
 	set stock_value = 0 where portfolio_id = 1;
+
+insert into game (start_date, phase)
+	values ('2000-01', 1);
 			
