@@ -1,6 +1,7 @@
 package com.revature.repository;
 import java.util.List;
 
+
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.User;
-import com.revature.models.UserRole;
 
 @Repository("userRepository")
 @Transactional
@@ -49,10 +49,9 @@ public class UserRepositoryImpl implements UserRepository{
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;
-		}
+		}	
+
 	}
-	
-	
 
 }
 

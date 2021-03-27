@@ -4,13 +4,13 @@ package com.revature.driver;
 
 import java.time.LocalDate;
 
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.revature.models.Game;
 import com.revature.models.GamePhase;
 import com.revature.models.User;
-import com.revature.models.UserRole;
 import com.revature.repository.GameRepository;
 import com.revature.repository.GameRepositoryImpl;
 import com.revature.repository.UserRepository;
@@ -33,7 +33,7 @@ public class TestDriver {
 	
 	public static void insertInitialTeacher() {
 		
-		User u = new User("Teach", "tpw", new UserRole(1));
+		User u = new User("Teach", "tpw", "Teacher");
 		userRepo.register(u);
 		
 	}
