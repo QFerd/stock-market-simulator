@@ -11,24 +11,25 @@ import { LoginTemplate } from 'src/app/models/login-template.model';
 }) 
 export class LoginComponent implements OnInit {
 
-  public loginTemplate: LoginTemplate;
+  public loginTemplate: LoginTemplate = new LoginTemplate('','');
 
   constructor(public appComponent: AppComponent, private userService: UserServiceService) { 
-    this.loginTemplate = new LoginTemplate('','');
   }
 
   ngOnInit(): void {
+    this.appComponent.clearUser();
   }
 
   public login(): void {
-    this.userService.login(this.loginTemplate?.username,this.loginTemplate?.password)
     console.log(this.loginTemplate)
+    var currentUser = this.userService.login(this.loginTemplate?.username,this.loginTemplate?.password);
+    console.log(currentUser)
 
-    if(this.appComponent.user.role=='Teacher')
+    if(currentUser?.role=='Teacher')
     {
       window.location.href='teacher/home';
     }
-    else if (this.appComponent.user.role=='Student'){
+    else if (currentUser?.role=='Student'){
       window.location.href='home';
     }
   }
