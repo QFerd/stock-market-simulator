@@ -43,5 +43,6 @@ export class AppComponent implements OnInit {
 
   public clearUser():void{
     localStorage.clear();
+    this.user = { id: 0, portfolio_id: 0, role: '', username: '', game_game_id: 0 };
   }
 }
