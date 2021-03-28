@@ -12,7 +12,7 @@ import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { PositionsComponent } from './positions/positions.component';
 import { StockComponent } from './components/stock/stock.component';
-import { PositionDetailComponent } from './position-detail/position-detail.component';
+import { PositionDetailComponent } from './components/position-detail/position-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 
 
