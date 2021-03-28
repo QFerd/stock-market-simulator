@@ -1,6 +1,7 @@
 package com.revature.repository;
 import java.util.List;
 
+
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
@@ -12,8 +13,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.revature.models.Game;
 import com.revature.models.User;
-import com.revature.models.UserRole;
 
 @Repository("userRepository")
 @Transactional
@@ -31,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public void register(User user) {
 		logger.info("Attempting to register user.");
-		sessionFactory.getCurrentSession().save(user);
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -49,10 +50,15 @@ public class UserRepositoryImpl implements UserRepository{
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;
-		}
+		}	
+
 	}
 	
-	
+	@Override
+	public void createOrUpdateUser(User user) {
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		
+	}
 
 }
 

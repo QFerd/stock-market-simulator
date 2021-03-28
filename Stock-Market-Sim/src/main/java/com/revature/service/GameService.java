@@ -6,6 +6,6 @@ public interface GameService {
 	
 	public void createOrUpdateGame(Game game);
 	
-	public Game getGameState();
+	public Game getGame(int gameId);
 
 }

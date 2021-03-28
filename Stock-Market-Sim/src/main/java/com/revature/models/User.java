@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="USERS")
 public class User {
@@ -31,125 +33,170 @@ public class User {
 	@Column(name="PASSWORD", nullable=false)
 	private String password;
 	
+	@Column(name="USER_ROLE", nullable=false)
+	private String userRole;
+	
+	//========================DECIDED TO REMOVE USER ROLES TABLE
+	
 	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
 	
-	//Link to ints
-	//@JsonIgnore 
+	// Link to Games
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Game game;
+
+	//Link to portfolios
+	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
+	@JoinColumn(name = "portfolio_id", referencedColumnName = "portfolio_id")
+	private Portfolio portfolio;
+	
+	
+	//Link to UserRoles -- user role table deleted
+//	@JsonIgnore 
 	//Trying eager loading instead of JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="int_FK")
-	private UserRole roleId;
-//	@Column(name="role_id",updatable=false,insertable=false)
-//	private int roleId1;
+//	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name="UserRole_FK")
+//	private UserRole userRoleHolder;
+	
+	//No need for this:
+//	@Column(name="UserRole_FK", updatable=false, insertable=false)
+//	private int userRole;
+
 	
 	// I think that the user and portfolio is a ONE to ONE
 	// But position is Manyto ONe portfolio
 	
 	//Link to Portfolios
 
-//	@JsonIgnore
-	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
-	@JoinColumn(name = "portfolio_id", referencedColumnName = "portfolio_id")
-	private Portfolio portfolio;
+
 
 	
-	
+
+
+
 	public User() {};
 	
 	
 	//For creating new users
-	public User(String username, String password, int roleId) {
+
+	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.roleId = roleId;
+
 	}
 	
 
-	public User(int userId, String username, String password, Portfolio portfolio) {
+	public User(String username, String password, String userRole, Portfolio portfolio) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.userRole = userRole;
+		this.portfolio = portfolio;
+	}
+
+
+	public User(String username, String password, String userRole) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.userRole = userRole;
+	}
+
+
+
+	public User(String username, String password, String userRole, Game game) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.userRole = userRole;
+		this.game = game;
+	}
+
+
+	public User(int userId, String username, String password, String userRole, Portfolio portfolio) {
+
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
+		this.userRole = userRole;
 		this.portfolio = portfolio;
 	}
 
 
-	public User(int userId, String username, String password, int roleId, Portfolio portfolio) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.roleId = roleId;
-		this.portfolio = portfolio;
-	}
 
-	public User(String username, String password, int roleId, Portfolio portfolio) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.roleId = roleId;
-		this.portfolio = portfolio;
-	}
+
+
 	
-	
-	
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
-	}
-
-
 	public int getUserId() {
 		return userId;
 	}
+
 
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
+
 	public String getUsername() {
 		return username;
 	}
+
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+
 	public String getPassword() {
 		return password;
 	}
+
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public int getroleId() {
-		return roleId;
+
+	public String getUserRole() {
+		return userRole;
 	}
 
-	public void setroleId(int roleId) {
-		this.roleId = roleId;
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+
 	}
 
-	public Portfolio getportfolio() {
+
+	public Portfolio getPortfolio() {
 		return portfolio;
 	}
 
-	public void setportfolio(Portfolio portfolio) {
+
+	public void setPortfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
 	}
 	
+	public Game getGame() {
+		return game;
+	}
+
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((game == null) ? 0 : game.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
-		result = prime * result + roleId;
 		result = prime * result + userId;
+		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -164,6 +211,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (game == null) {
+			if (other.game != null)
+				return false;
+		} else if (!game.equals(other.game))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -174,9 +226,12 @@ public class User {
 				return false;
 		} else if (!portfolio.equals(other.portfolio))
 			return false;
-		if (roleId != other.roleId)
-			return false;
 		if (userId != other.userId)
+			return false;
+		if (userRole == null) {
+			if (other.userRole != null)
+				return false;
+		} else if (!userRole.equals(other.userRole))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -185,6 +240,14 @@ public class User {
 			return false;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
+	}
+	
+	
 	
 	
 	

@@ -19,68 +19,47 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="GAME")
 public class Game {
 	
 	
-	
-	public Game() {}
-	
-	public Game(LocalDate gameStartDate, LocalDate gameCurrentDate, GamePhase gamePhaseHolder) {
-		super();
-		this.gameStartDate = gameStartDate;
-		this.gameCurrentDate = gameCurrentDate;
-		this.gamePhaseHolder = gamePhaseHolder;
-
-	}
-	
-	public Game(LocalDate gameStartDate, LocalDate gameCurrentDate, GamePhase gamePhaseHolder,
-			List<Portfolio> portfolioList) {
-		super();
-		this.gameStartDate = gameStartDate;
-		this.gameCurrentDate = gameCurrentDate;
-		this.gamePhaseHolder = gamePhaseHolder;
-		this.portfolioList = portfolioList;
-	}
-
-
-
-	public Game(int gameId, LocalDate gameStartDate, LocalDate gameCurrentDate, GamePhase gamePhaseHolder,
-			List<Portfolio> portfolioList) {
-		super();
-		this.gameId = gameId;
-		this.gameStartDate = gameStartDate;
-		this.gameCurrentDate = gameCurrentDate;
-		this.gamePhaseHolder = gamePhaseHolder;
-		this.portfolioList = portfolioList;
-	}
-
 	@Id
-	@Column(name="game_id", unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="gameSequence")
 	@SequenceGenerator(name="gameSequence", sequenceName="GAME_SEQ", allocationSize=1)
+	@Column(name="GAME_ID", nullable=false)
 	private int gameId;
+
+	@Column(name="START_DATE", nullable=false)
+	private String startDate;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@Column(name="GAME_START_DATE", nullable=false)
-	private LocalDate gameStartDate;
+	@Column(name="PHASE", nullable=false)
+	private int phase;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@Column(name="GAME_CURRENT_DATE", nullable=false)
-	private LocalDate gameCurrentDate;
+	//-------------------FK/PK RELATIONSHIPS
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="game_id_fk")
+	private List<User> gameList = new ArrayList<User>();
 	
-	//-----------------DEFINE OUR PK/FK RELATIONSHIPS
+
 	
-	//Link to GamePhase
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="GamePhase_FK")
-	private GamePhase gamePhaseHolder;
+	public Game() {
+		super();
+	}
 	
-	//Link to Portfolio
-	@OneToMany(mappedBy="gameHolder", fetch = FetchType.LAZY)
-	private List<Portfolio> portfolioList = new ArrayList<Portfolio>();
+	
+
+	public Game(int gameId, String startDate, int phase) {
+		super();
+		this.gameId = gameId;
+		this.startDate = startDate;
+		this.phase = phase;
+	}
+
+
 
 	public int getGameId() {
 		return gameId;
@@ -90,49 +69,52 @@ public class Game {
 		this.gameId = gameId;
 	}
 
-	public LocalDate getGameStartDate() {
-		return gameStartDate;
+	public String getStartDate() {
+		return startDate;
 	}
 
-	public void setGameStartDate(LocalDate gameStartDate) {
-		this.gameStartDate = gameStartDate;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
-	public LocalDate getGameCurrentDate() {
-		return gameCurrentDate;
+	public int getPhase() {
+		return phase;
 	}
 
-	public void setGameCurrentDate(LocalDate gameCurrentDate) {
-		this.gameCurrentDate = gameCurrentDate;
+	public void setPhase(int phase) {
+		this.phase = phase;
 	}
 
-	public GamePhase getGamePhaseHolder() {
-		return gamePhaseHolder;
+	
+
+
+
+
+	
+
+	public List<User> getGameList() {
+		return gameList;
 	}
 
-	public void setGamePhaseHolder(GamePhase gamePhaseHolder) {
-		this.gamePhaseHolder = gamePhaseHolder;
+
+
+	public void setGameList(List<User> gameList) {
+		this.gameList = gameList;
 	}
 
-	public List<Portfolio> getPortfolioList() {
-		return portfolioList;
-	}
-
-	public void setPortfolioList(List<Portfolio> portfolioList) {
-		this.portfolioList = portfolioList;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((gameCurrentDate == null) ? 0 : gameCurrentDate.hashCode());
 		result = prime * result + gameId;
-		result = prime * result + ((gamePhaseHolder == null) ? 0 : gamePhaseHolder.hashCode());
-		result = prime * result + ((gameStartDate == null) ? 0 : gameStartDate.hashCode());
-		result = prime * result + ((portfolioList == null) ? 0 : portfolioList.hashCode());
+		result = prime * result + ((gameList == null) ? 0 : gameList.hashCode());
+		result = prime * result + phase;
+		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -143,38 +125,32 @@ public class Game {
 		if (getClass() != obj.getClass())
 			return false;
 		Game other = (Game) obj;
-		if (gameCurrentDate == null) {
-			if (other.gameCurrentDate != null)
-				return false;
-		} else if (!gameCurrentDate.equals(other.gameCurrentDate))
-			return false;
 		if (gameId != other.gameId)
 			return false;
-		if (gamePhaseHolder == null) {
-			if (other.gamePhaseHolder != null)
+		if (gameList == null) {
+			if (other.gameList != null)
 				return false;
-		} else if (!gamePhaseHolder.equals(other.gamePhaseHolder))
+		} else if (!gameList.equals(other.gameList))
 			return false;
-		if (gameStartDate == null) {
-			if (other.gameStartDate != null)
-				return false;
-		} else if (!gameStartDate.equals(other.gameStartDate))
+		if (phase != other.phase)
 			return false;
-		if (portfolioList == null) {
-			if (other.portfolioList != null)
+		if (startDate == null) {
+			if (other.startDate != null)
 				return false;
-		} else if (!portfolioList.equals(other.portfolioList))
+		} else if (!startDate.equals(other.startDate))
 			return false;
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Game [gameId=" + gameId + ", gameStartDate=" + gameStartDate + ", gameCurrentDate=" + gameCurrentDate
-				+ ", gamePhaseHolder=" + gamePhaseHolder + "]";
+		return "Game [gameId=" + gameId + ", startDate=" + startDate + ", phase=" + phase + "]";
 	}
 
 	
-
+	
+	
 	
 }	

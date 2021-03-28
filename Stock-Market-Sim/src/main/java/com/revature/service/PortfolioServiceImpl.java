@@ -25,24 +25,5 @@ private static Logger logger = Logger.getLogger(PortfolioServiceImpl.class);
 		
 	}
 
-	@Override
-	public double getTotalValue(User user, Game game) {
-		return portfolioRepository.getTotalValue(user, game);
-	}
-
-	@Override
-	public double getStockValue(User user, Game game) {
-		return portfolioRepository.getStockValue(user, game);
-	}
-
-	@Override
-	public double getCashValue(User user, Game game) {
-		return portfolioRepository.getCashValue(user, game);
-	}
-
-	@Override
-	public Portfolio getPortfolio(User user, Game game) {
-		return portfolioRepository.getPortfolio(user, game);
-	}
 
 }
