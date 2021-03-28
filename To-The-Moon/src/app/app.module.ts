@@ -16,7 +16,8 @@ import { PositionDetailComponent } from './components/position-detail/position-d
 import { RegistryComponent } from './components/teacher/registry/registry.component';
 import { ClassroomComponent } from './components/teacher/registry/classroom/classroom.component';
 import { StudentsComponent } from './components/teacher/registry/students/students.component';
-
+import { TestChartingComponent } from './test-charting/test-charting.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { StudentsComponent } from './components/teacher/registry/students/studen
     RegistryComponent,
     ClassroomComponent,
     StudentsComponent,
+    TestChartingComponent,
    
     
   ],
@@ -41,6 +43,7 @@ import { StudentsComponent } from './components/teacher/registry/students/studen
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserModule, GoogleChartsModule
 
   ],
   providers: [],
