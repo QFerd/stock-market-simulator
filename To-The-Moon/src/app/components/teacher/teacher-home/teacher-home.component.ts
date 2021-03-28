@@ -12,4 +12,8 @@ export class TeacherHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  startGame() {
+    
+  }
+
 }
