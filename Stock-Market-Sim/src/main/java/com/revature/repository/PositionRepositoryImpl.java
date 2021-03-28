@@ -30,25 +30,7 @@ public class PositionRepositoryImpl implements PositionRepository{
 		logger.trace("Injection session factory bean");
 	}
 	
-	@Override
-	public Position getPosition(User user, Game game, String stockSymbol) {
-		Portfolio port = portfolioService.getPortfolio(user, game);
-		try {
-			return (Position) sessionFactory.getCurrentSession().createCriteria(Position.class).add(Restrictions.like("portfolio_id", port.getPortfolioId())).add(Restrictions.like("stock_symbol", stockSymbol))
-					.list().get(0);
-		} catch (IndexOutOfBoundsException e) {
-			logger.debug(e);
-			return null;
-		}
-	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Position> getPositionsForUser(User user, Game game) {
-		Portfolio port = portfolioService.getPortfolio(user, game);
-		return (List<Position>) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("portfolio_id", port.getPortfolioId()))
-				.list(); //Unchecked cast to List<Position>.
-	}
 	
 	@Override
 	public void createOrUpdatePosition(Position position) {

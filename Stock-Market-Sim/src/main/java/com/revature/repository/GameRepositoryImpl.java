@@ -6,10 +6,12 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.Game;
+import com.revature.models.User;
 
 @Repository("gameRepository")
 @Transactional
@@ -32,15 +34,14 @@ public class GameRepositoryImpl implements GameRepository {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public Game getGameState() {
+	public Game getGame(int gameId) {
 	
 		try {
-			List<Game> gameList = (List<Game>) sessionFactory.getCurrentSession().createCriteria(Game.class).list();
-			logger.info("GameRepositoryImpl: Retrieved game list:" + gameList);
-			return (Game) sessionFactory.getCurrentSession().createCriteria(Game.class).list().get(gameList.size() - 1);
+			return (Game) sessionFactory.getCurrentSession().createCriteria(Game.class).add(Restrictions.like("gameId", gameId));
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;
 		}
 	}
+	
 	}

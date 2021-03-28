@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.ajax.ClientMessage;
+import com.revature.models.Game;
 import com.revature.models.User;
 import com.revature.service.UserService;
 
@@ -41,6 +42,13 @@ public class UserControllerImpl implements UserController{
 	public @ResponseBody String getUserId(@RequestBody User user, HttpServletRequest request) {
 		request.getSession();
 		return userService.getUser(user.getUsername()).getUserRole();
+	}
+	
+
+	@PostMapping("/setUser")
+	public @ResponseBody void setUser(@RequestBody User user, HttpServletRequest request) {
+		userService.createOrUpdateUser(user);
+		
 	}
 
 }

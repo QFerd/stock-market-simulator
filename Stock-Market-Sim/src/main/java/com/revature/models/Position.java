@@ -55,6 +55,9 @@ public class Position {
 	@Column(name="QUANTITY")
 	private int quantity;
 	
+	//====================FK/PK RELATIONSHIPS
+	
+	
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Portfolio portfolio;

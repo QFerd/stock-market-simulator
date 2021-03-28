@@ -9,4 +9,6 @@ public interface UserController {
 	ClientMessage registerUser(User user);
 	
 	User loginUser(User user, HttpServletRequest request);
+	
+	void setUser(User user, HttpServletRequest request);
 }

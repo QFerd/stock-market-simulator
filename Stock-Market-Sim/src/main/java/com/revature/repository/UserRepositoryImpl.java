@@ -13,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.revature.models.Game;
 import com.revature.models.User;
 
 @Repository("userRepository")
@@ -31,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public void register(User user) {
 		logger.info("Attempting to register user.");
-		sessionFactory.getCurrentSession().save(user);
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -51,6 +52,12 @@ public class UserRepositoryImpl implements UserRepository{
 			return null;
 		}	
 
+	}
+	
+	@Override
+	public void createOrUpdateUser(User user) {
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
+		
 	}
 
 }

@@ -31,35 +31,5 @@ public class PortfolioRepositoryImpl implements PortfolioRepository{
 		sessionFactory.getCurrentSession().save(portfolio);
 	}
 
-	@Override
-	public double getTotalValue(User user, Game game) {
-		return getStockValue(user, game) + getCashValue(user, game);
-	}
-
-	@Override
-	public double getStockValue(User user, Game game) {
-		Portfolio port = getPortfolio(user, game);
-		port.getStockValue();
-		return 0;
-	}
-
-	@Override
-	public double getCashValue(User user, Game game) {
-		Portfolio port = getPortfolio(user, game);	
-		port.getCashValue();
-		return 0;
-	}
-
-	@Override
-	public Portfolio getPortfolio(User user, Game game) {
-		try {
-			int uid = user.getUserId();
-			int gid = game.getGameId();
-			return (Portfolio) sessionFactory.getCurrentSession().createCriteria(Portfolio.class).add(Restrictions.like("player_id", uid)).add(Restrictions.like("game_id", gid)).list().get(0);
-		} catch (IndexOutOfBoundsException e) {
-			logger.debug(e);
-			return null;
-		}
-	}
 
 }
