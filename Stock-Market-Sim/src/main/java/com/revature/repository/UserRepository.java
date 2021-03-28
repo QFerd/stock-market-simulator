@@ -14,4 +14,6 @@ public interface UserRepository {
 	//List<User> getUserByClassroom();
 	
 	User getUser(String username);
+
+	void createOrUpdateUser(User user);
 }
