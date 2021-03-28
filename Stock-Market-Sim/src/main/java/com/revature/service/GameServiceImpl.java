@@ -19,9 +19,10 @@ public class GameServiceImpl implements GameService{
 	private GameRepository gameRepository;
 	
 	@Override
-	public void createOrUpdateGame(Game game) {
+	public int createGame(Game game) {
 		Log.info("Attempting to create or update a game.");
-		gameRepository.createOrUpdateGame(game);
+		System.out.println("Game Service: ");
+		return gameRepository.createGame(game);
 		
 	}
 
@@ -34,5 +35,11 @@ public class GameServiceImpl implements GameService{
 		return null;
 		}
 
+	}
+
+	@Override
+	public void updateGame(Game game) {
+		gameRepository.updateGame(game);
+		
 	}
 }

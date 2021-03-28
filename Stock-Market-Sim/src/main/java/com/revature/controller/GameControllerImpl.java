@@ -30,16 +30,23 @@ public class GameControllerImpl implements GameController {
 	private GameService gameService;
 
 	@PostMapping("/setGame")
-	public @ResponseBody void setGame(@RequestBody Game game) {
-		gameService.createOrUpdateGame(game);
+	public @ResponseBody int setGame(@RequestBody Game game,  HttpServletRequest request) {
+		request.getSession();
+		return gameService.createGame(game);
 
 	}
 	
 	@PostMapping("/getGame")
-	public @ResponseBody Game getGame(@RequestBody User user, HttpServletRequest request) {
+	public @ResponseBody Game getGameByUser(@RequestBody User user, HttpServletRequest request) {
 		request.getSession();
 		return gameService.getGame(user.getGame().getGameId());
 
+	}
+
+	@PostMapping("/updateGame")
+	public void update(@RequestBody Game game,  HttpServletRequest request) {
+		request.getSession();
+		gameService.updateGame(game);
 	}
 	
 }
