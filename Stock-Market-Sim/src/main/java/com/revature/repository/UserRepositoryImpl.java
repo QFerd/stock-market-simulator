@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public void register(User user) {
 		logger.info("Attempting to register user.");
-		sessionFactory.getCurrentSession().save(user);
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
 	@SuppressWarnings("unchecked")

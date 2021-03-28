@@ -27,31 +27,7 @@ public class Portfolio {
 	
 	
 	
-	public Portfolio() {
-		super();
-	}
-	
-	
 
-	public Portfolio(double totalValue, double stockValue, double cashValue,
-			List<Position> positionList) {
-		super();
-		this.totalValue = totalValue;
-		this.stockValue = stockValue;
-		this.cashValue = cashValue;
-		this.positionList = positionList;
-	}
-
-
-
-	public Portfolio(int portfolioId, double totalValue, double stockValue, double cashValue, List<Position> positionList) {
-		super();
-		this.portfolio_Id = portfolioId;
-		this.totalValue = totalValue;
-		this.stockValue = stockValue;
-		this.cashValue = cashValue;
-		this.positionList = positionList;
-	}
 	
 	@Id
 	@Column(name="portfolio_id", unique=true, nullable=false)
@@ -76,11 +52,44 @@ public class Portfolio {
 	@OneToOne(mappedBy = "portfolio")
 	private User user;
 	
+
 	//Link to position
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="portfolio_id_fk")
 	private List<Position> positionList = new ArrayList<Position>();
+	
+	public Portfolio() {
+		super();
+	}
 
+
+
+	public Portfolio(int portfolioId, double totalValue, double stockValue, double cashValue, List<Position> positionList) {
+		super();
+		this.portfolio_Id = portfolioId;
+		this.totalValue = totalValue;
+		this.stockValue = stockValue;
+		this.cashValue = cashValue;
+		this.positionList = positionList;
+	}
+	
+	public Portfolio(double totalValue, double stockValue, double cashValue, List<Position> positionList) {
+		super();
+		this.totalValue = totalValue;
+		this.stockValue = stockValue;
+		this.cashValue = cashValue;
+		this.positionList = positionList;
+	}
+
+
+
+	public Portfolio(double totalValue, double stockValue, double cashValue) {
+		super();
+		this.totalValue = totalValue;
+		this.stockValue = stockValue;
+		this.cashValue = cashValue;
+	}
+	
 	public int getPortfolioId() {
 		return portfolio_Id;
 	}
