@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
   }
   
   public registerTeacher(){
-
+    var currentUser= this.userService.registerTeacher(this.loginTemplate);
+    if(currentUser?.role=='Teacher')
+      window.location.href = "teacher/registry/classroom";
+    else
+      alert("Something went wrong");
   }
 
 }

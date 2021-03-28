@@ -1,4 +1,4 @@
-import { Position } from './position';
+import { Position } from './models/position';
 
 
 export const POSITIONS: Position[] = [
