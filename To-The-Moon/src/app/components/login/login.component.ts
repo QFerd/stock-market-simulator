@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     if(currentUser?.role=='Teacher')
     {
       if (currentUser?.game_game_id == null || currentUser?.game_game_id == 0 ){
-        window.location.href="teacher/registry/game";
+        window.location.href="teacher/registry/classroom";
       } else {
         window.location.href='teacher/home';
       }
