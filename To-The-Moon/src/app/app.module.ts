@@ -10,8 +10,13 @@ import { User } from './models/user.model';
 import { HomeComponent } from './components/home/home.component';
 import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-home.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
-import { PositionsComponent } from './positions/positions.component';
+import { PositionsComponent } from './components/positions/positions.component';
 import { StockComponent } from './components/stock/stock.component';
+import { PositionDetailComponent } from './components/position-detail/position-detail.component';
+import { RegistryComponent } from './components/teacher/registry/registry.component';
+import { ClassroomComponent } from './components/teacher/registry/classroom/classroom.component';
+import { StudentsComponent } from './components/teacher/registry/students/students.component';
+
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import { StockComponent } from './components/stock/stock.component';
     TeacherComponent,
     TeacherHomeComponent,
     PositionsComponent,
-    StockComponent
+    StockComponent,
+    PositionDetailComponent,
+    RegistryComponent,
+    ClassroomComponent,
+    StudentsComponent,
+   
     
   ],
   imports: [
