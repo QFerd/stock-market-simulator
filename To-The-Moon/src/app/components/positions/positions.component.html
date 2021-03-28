@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody >
-            <tr *ngFor="let position of positions">
+            <tr *ngFor="let position of positions" (click)="onSelect(position)">
                 <th scope="row">{{position.stock_symbol}}</th>
                 <td>{{position.quantity}}</td>
                 <td>{{null}}</td>
@@ -18,3 +18,5 @@
         </tbody>
     </table>
 </div>
+
+<app-position-detail [position]="selectedPosition"></app-position-detail>
