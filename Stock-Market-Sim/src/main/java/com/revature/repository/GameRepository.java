@@ -4,7 +4,9 @@ import com.revature.models.Game;
 
 public interface GameRepository {
 	
-	public void createOrUpdateGame(Game game);
+	public int createGame(Game game);
+	
+	public void updateGame(Game game);
 	
 	public Game getGame(int userId);
 	

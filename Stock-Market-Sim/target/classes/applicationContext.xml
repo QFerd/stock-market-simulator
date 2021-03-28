@@ -70,7 +70,7 @@
 				<prop key="show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<!-- customize this -->
-				<prop key="hibernate.default_schema">"stock-market-sim"</prop>
+				<prop key="hibernate.default_schema">"smstest"</prop>
 			</props>
 		</property>
 	</bean>

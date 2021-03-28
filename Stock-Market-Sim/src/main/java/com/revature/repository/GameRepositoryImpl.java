@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,11 +28,13 @@ public class GameRepositoryImpl implements GameRepository {
 	}
 
 	@Override
-	public void createOrUpdateGame(Game game) {
-		sessionFactory.getCurrentSession().saveOrUpdate(game);
+	public int createGame(Game game) {
+		System.out.println("Game Repository: in game repo");
+		return (int) sessionFactory.getCurrentSession().save(game);
+		
 		
 	}
-
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public Game getGame(int gameId) {
@@ -42,6 +45,11 @@ public class GameRepositoryImpl implements GameRepository {
 			logger.debug(e);
 			return null;
 		}
+	}
+
+	public void updateGame(Game game) {
+		sessionFactory.getCurrentSession().update(game);
+		
 	}
 	
 	}
