@@ -22,11 +22,11 @@ export class AppComponent implements OnInit {
     if (userInStorage != null) {
       this.user = JSON.parse(userInStorage);
     } else {
-      this.user = { username: '', role: '', id: 0, portfolio_id: 0, userrole_id: 0 };
+      this.user = { username: '', role: '', id: 0, portfolio_id: 0, game_game_id:0 };
     }
   }
 
-   user: User = {id:0,portfolio_id:0,role:'',username:'',userrole_id:0};
+   user: User = {id:0,portfolio_id:0,role:'',username:'',game_game_id:0};
 
 
   public makeStudent():void {

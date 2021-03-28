@@ -5,7 +5,7 @@ export interface User {
     role: string;
 
     portfolio_id:number;
-    userrole_id:number;
+    game_game_id:number;
     //comment
     
     

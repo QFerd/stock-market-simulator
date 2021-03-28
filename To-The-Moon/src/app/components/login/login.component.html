@@ -1,5 +1,8 @@
-<div class="container-fluid">
-    
+<div class="container-fluid center">
+    <div class="jumbotron">
+        <h2>Welcome to To The Moon:<br> A game of historical investing</h2>
+    </div>
+    <div class="container">   
         <div class="form-group">
             <label for="username-textbox">Username:</label>
             <input type="text" [(ngModel)]="this.loginTemplate.username" class="form-control" id="username-textbox">
@@ -8,5 +11,8 @@
             <label for="password-text">Password:</label>
             <input type="password" [(ngModel)]="this.loginTemplate.password" class="form-control" id="password-text">
         </div>
-        <button class="btn btn-primary btn-center" (click)="login()">Login</button>
+
+        <button style="margin-right: 1em;" class="btn btn-primary btn-center" (click)="login()">Login</button>
+        <button class="btn btn-primary btn-center" (click)="registerTeacher()">RegisterTeacher</button>
+    </div> 
 </div>
