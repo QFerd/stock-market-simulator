@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-home.component';
-import { PositionsComponent } from './positions/positions.component';
+import { PositionsComponent } from './components/positions/positions.component';
 import { StockComponent } from './components/stock/stock.component';
 
 const routes: Routes = [
