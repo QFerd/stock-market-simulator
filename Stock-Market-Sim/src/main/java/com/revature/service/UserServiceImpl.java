@@ -6,8 +6,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.models.Game;
 import com.revature.models.User;
 import com.revature.repository.UserRepository;
+
+import jdk.internal.org.jline.utils.Log;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -33,5 +36,11 @@ public class UserServiceImpl implements UserService{
 		return userRepository.getUser(username);
 	}
 	
-
+	@Override
+	public void createOrUpdateUser(User user) {
+		Log.info("Attempting to create or update a user.");
+		userRepository.createOrUpdateUser(user);
+		
+	}
+	
 }

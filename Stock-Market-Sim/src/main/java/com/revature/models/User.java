@@ -86,6 +86,15 @@ public class User {
 	}
 	
 
+	public User(String username, String password, String userRole, Portfolio portfolio) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.userRole = userRole;
+		this.portfolio = portfolio;
+	}
+
+
 	public User(String username, String password, String userRole) {
 		super();
 		this.username = username;
@@ -93,6 +102,15 @@ public class User {
 		this.userRole = userRole;
 	}
 
+
+
+	public User(String username, String password, String userRole, Game game) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.userRole = userRole;
+		this.game = game;
+	}
 
 
 	public User(int userId, String username, String password, String userRole, Portfolio portfolio) {
