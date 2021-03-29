@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { USERS } from './mock-user';
+import { Portfolio } from './models/portfolio.model';
+import { Position } from './models/position';
 import { User } from './models/user.model';
 import { UserServiceService } from './services/user-service.service';
 
@@ -25,8 +27,9 @@ export class AppComponent implements OnInit {
       this.user = { username: '', userRole: '', id: 0, portfolio_id: 0, game_game_id:0 };
     }
   }
-
-   user: User = {id:0,portfolio_id:0,userRole:'',username:'',game_game_id:0};
+  positions:Position[]=[];
+  portfolio:Portfolio = {portfolio_id:0,cash_value:0, stock_value:0,total_value:0};
+  user: User = {id:0,portfolio_id:0,userRole:'',username:'',game_game_id:0};
 
 
   public makeStudent():void {
