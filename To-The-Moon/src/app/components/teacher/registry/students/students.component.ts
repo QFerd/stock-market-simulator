@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { USERS } from '../../../../mock-user'
+import { User } from "../../../../user"
 
 @Component({
   selector: 'app-students',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
 
+  users = USERS;
+  selectedUser?: User;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

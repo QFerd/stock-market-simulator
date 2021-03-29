@@ -12,4 +12,8 @@ export class ClassroomComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  createClassroom(): void {
+    window.location.href = "teacher/registry/students"
+  }
+
 }
