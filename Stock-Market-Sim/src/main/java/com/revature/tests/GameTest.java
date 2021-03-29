@@ -1,11 +1,13 @@
 package com.revature.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
 import com.revature.models.Game;
-import com.revature.models.Portfolio;
 import com.revature.models.User;
 
 public class GameTest {
@@ -16,46 +18,33 @@ public class GameTest {
 	}
 	
 	@Test
-	public void testUserId() {
-		User u = new User();
-		u.setUserId(1);
-		assertEquals(1, u.getUserId());
-}
-
-	@Test
-	public void testUsername() {
-		User u = new User();
-		u.setUsername("JTest");
-		assertEquals("JTest", u.getUsername());
-	}
-	
-	@Test
-	public void testPassword() {
-		User u = new User();
-		u.setPassword("Testpass");
-		assertEquals("Testpass", u.getPassword());
-	}
-	
-	@Test
-	public void testUserRole() { //1st UserRole test.
-		User u = new User();
-		u.setUserRole("Student");
-		assertEquals("Student", u.getUserRole());
-	}
-	
-	@Test
-	public void testPortfolio() { //1st Portfolio test.
-		User u = new User();
-		Portfolio port = new Portfolio();
-		u.setPortfolio(port);
-		assertEquals(port, u.getPortfolio());
-	}
-	
-	@Test
-	public void testGame() { //1st Game test.
-		User u = new User();
+	public void testGameId() {
 		Game game = new Game();
-		u.setGame(game);
-		assertEquals(game, u.getGame());
+		game.setGameId(1);
+		assertEquals(1, game.getGameId());
+}
+	
+	@Test
+	public void testStartDate() {
+		Game game = new Game();
+		game.setStartDate("January 1st, 2000");
+		assertEquals("January 1st, 2000", game.getStartDate());
 	}
+	
+	@Test
+	public void testPhase() {
+		Game game = new Game();
+		game.setPhase(1);
+		assertEquals(1, game.getPhase());
+	}
+	
+	@Test
+	public void testUserList() {
+		Game game = new Game();
+		User u = new User();
+		List<User> ulist = new ArrayList<User>();
+		game.setUserList(ulist);
+		assertEquals(ulist, game.getUserList());
+	}
+
 }

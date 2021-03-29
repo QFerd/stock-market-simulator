@@ -20,14 +20,14 @@ public class GameServiceImpl implements GameService{
 	
 	@Override
 	public int createGame(Game game) {
-		Log.info("Attempting to create or update a game.");
-		System.out.println("Game Service: ");
+		logger.info("Attempting to create or update a game from GameServiceImpl.");
 		return gameRepository.createGame(game);
 		
 	}
 
 	@Override
 	public Game getGame(int gameId) {
+		logger.info("Attempting to create a game from GameServiceImpl.");
 		try {
 			return gameRepository.getGame(gameId);
 		} catch (Exception ex) {
@@ -39,6 +39,7 @@ public class GameServiceImpl implements GameService{
 
 	@Override
 	public void updateGame(Game game) {
+		logger.info("Attempting to update game from GameServiceImpl.");
 		gameRepository.updateGame(game);
 		
 	}

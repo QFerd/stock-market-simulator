@@ -29,7 +29,7 @@ public class GameRepositoryImpl implements GameRepository {
 
 	@Override
 	public int createGame(Game game) {
-		System.out.println("Game Repository: in game repo");
+		logger.info("Attempting to create game from GameRepository.");
 		return (int) sessionFactory.getCurrentSession().save(game);
 		
 		
@@ -38,9 +38,9 @@ public class GameRepositoryImpl implements GameRepository {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Game getGame(int gameId) {
-	
+		logger.info("Attempting to get game from GameRepository.");
 		try {
-			return (Game) sessionFactory.getCurrentSession().createCriteria(Game.class).add(Restrictions.like("gameId", gameId));
+			return (Game) sessionFactory.getCurrentSession().get(Game.class, gameId);
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;
@@ -48,6 +48,7 @@ public class GameRepositoryImpl implements GameRepository {
 	}
 
 	public void updateGame(Game game) {
+		logger.info("Attempting to update game from GameRepository.");
 		sessionFactory.getCurrentSession().update(game);
 		
 	}
