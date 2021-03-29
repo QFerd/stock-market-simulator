@@ -22,24 +22,26 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void register(User user) {
-		
+		logger.info("Attempting to register user with UserService.");
 		userRepository.register(user);
 		logger.info(user.getUserId() != 0);
 	}
 
 	@Override
 	public List<User> getAllUsers() {
+		logger.info("Attempting to register user with UserService.");
 		return userRepository.getAllUsers();
 	}
 
 	@Override
 	public User getUser(String username) {
+		logger.info("Attempting to get user with UserService.");
 		return userRepository.getUser(username);
 	}
 	
 	@Override
 	public void createOrUpdateUser(User user) {
-		Log.info("Attempting to create or update a user.");
+		logger.info("Attempting to create or update a user with UserService.");
 		userRepository.createOrUpdateUser(user);
 		
 	}
