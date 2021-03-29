@@ -1,5 +1,8 @@
-<div class="container-fluid">
-    
+
+    <div class="jumbotron text-center">
+        <h2>Welcome to To The Moon:<br> A game of historical investing</h2>
+    </div>
+    <div class="container">   
         <div class="form-group">
             <label for="username-textbox">Username:</label>
             <input type="text" [(ngModel)]="this.loginTemplate.username" class="form-control" id="username-textbox">
@@ -8,5 +11,34 @@
             <label for="password-text">Password:</label>
             <input type="password" [(ngModel)]="this.loginTemplate.password" class="form-control" id="password-text">
         </div>
-        <button class="btn btn-primary btn-center" (click)="login()">Login</button>
+
+        <button style="margin-right: 1em;" class="btn btn-primary btn-center" (click)="login()">Login</button>
+        <br><span>Would you like to register as a teacher: </span><a href='' data-toggle="modal" data-target="#exampleModal" style="color: blue;">Sign up</a>
+    </div> 
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <div class="form-group">
+            <label for="username-textbox">Username:</label>
+            <input type="text" [(ngModel)]="this.loginTemplate.username" class="form-control" id="username-textbox">
+        </div>
+        <div class="form-group">
+            <label for="password-text">Password:</label>
+            <input type="password" [(ngModel)]="this.loginTemplate.password" class="form-control" id="password-text">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="registerTeacher()">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

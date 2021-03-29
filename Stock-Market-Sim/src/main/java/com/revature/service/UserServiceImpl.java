@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void register(User user) {
+		
 		userRepository.register(user);
 		logger.info(user.getUserId() != 0);
 	}

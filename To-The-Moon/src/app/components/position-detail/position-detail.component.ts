@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { Position } from '../../position';
+import { Position } from '../../models/position';
 
 @Component({
   selector: 'app-position-detail',

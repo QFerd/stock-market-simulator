@@ -5,7 +5,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" >
+        <div  *ngIf="this.appComponent.user.role == 'Teacher'"class="collapse navbar-collapse" id="navbarTogglerDemo02" >
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+               
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="teacher/home">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink = "teacher/classroom">Classrooms</a>
+                </li>
+            </ul>
+          <button type="button" class="btn btn-info" (click) = "logout()">Logout</button>
+        </div>
+
+        <div  *ngIf="this.appComponent.user.role == 'Student'"class="collapse navbar-collapse" id="navbarTogglerDemo02" >
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                
                 <li class="nav-item active">
@@ -15,7 +28,7 @@
                     <a class="nav-link" routerLink = "postions">Positions</a>
                 </li>
             </ul>
-          <button type="button" class="btn btn-info" onclick = "logout()">Logout</button>
+          <button type="button" class="btn btn-info" (click) = "logout()">Logout</button>
         </div>
     </nav>
 </div> 

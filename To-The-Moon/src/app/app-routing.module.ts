@@ -9,6 +9,7 @@ import { TeacherComponent } from './components/teacher/teacher.component';
 import { TeacherHomeComponent } from './components/teacher/teacher-home/teacher-home.component';
 import { PositionsComponent } from './components/positions/positions.component';
 import { StockComponent } from './components/stock/stock.component';
+import { TestChartingComponent } from './test-charting/test-charting.component';
 
 const routes: Routes = [
   { path: "", redirectTo: 'login', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
    ] },
    { path: "home",component:HomeComponent},
    { path: "postions", component:PositionsComponent},
-   { path:"stock/*",component:StockComponent}
+   { path:"stock/*",component:StockComponent},
+   {path:"testingChart",component:TestChartingComponent}
 ];
 
 @NgModule({

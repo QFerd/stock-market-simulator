@@ -27,12 +27,24 @@ export class LoginComponent implements OnInit {
 
     if(currentUser?.role=='Teacher')
     {
-      window.location.href='teacher/home';
+      if (currentUser?.game_game_id == null || currentUser?.game_game_id == 0 ){
+        window.location.href="teacher/registry/classroom";
+      } else {
+        window.location.href='teacher/home';
+      }
+      
     }
     else if (currentUser?.role=='Student'){
       window.location.href='home';
     }
   }
   
+  public registerTeacher(){
+    var currentUser= this.userService.registerTeacher(this.loginTemplate);
+    if(currentUser?.role=='Teacher')
+      window.location.href = "teacher/registry/classroom";
+    else
+      alert("Something went wrong");
+  }
 
 }

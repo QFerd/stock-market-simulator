@@ -45,7 +45,7 @@ public class User {
 	private Game game;
 
 	//Link to portfolios
-	@OneToOne(cascade=CascadeType.ALL, fetch	= FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL, fetch= FetchType.EAGER)
 	@JoinColumn(name = "portfolio_id", referencedColumnName = "portfolio_id")
 	private Portfolio portfolio;
 	

@@ -27,13 +27,13 @@ public class TestDriver {
 	public static GameRepository gameRepo = appContext.getBean("gameRepository", GameRepository.class);
 	
 	public static void main(String[] args) {
-		insertUser();
-		
+		System.out.println(insertGame());
+		System.out.println("working");
 	}
 	
 	public static void insertUser() {
 		
-		Game g = new Game(1, "2000-01-01", 1);
+
 		Position pos1 = new Position("abc", 1);
 		List<Position> positionList = new ArrayList<Position>();
 		positionList.add(pos1);
@@ -45,10 +45,16 @@ public class TestDriver {
 		
 	}
 	
-	public static void insertInitialGame() {
+	public static int insertGame() {
 		
-
+		Game g = new Game("2005-04-01", 1);
+		return gameRepo.createGame(g);
 	}
 	
+	public static void updateGame() {
+		
+		Game g = new Game(2, "2000-01-01", 2);
+		gameRepo.updateGame(g);
+	}
 
 }

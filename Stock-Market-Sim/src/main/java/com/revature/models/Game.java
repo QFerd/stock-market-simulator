@@ -42,7 +42,7 @@ public class Game {
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="game_id_fk")
-	private List<User> gameList = new ArrayList<User>();
+	private List<User> userList = new ArrayList<User>();
 	
 
 	
@@ -51,6 +51,14 @@ public class Game {
 	}
 	
 	
+
+	public Game(String startDate, int phase) {
+		super();
+		this.startDate = startDate;
+		this.phase = phase;
+	}
+
+
 
 	public Game(int gameId, String startDate, int phase) {
 		super();
@@ -89,18 +97,16 @@ public class Game {
 
 
 
-
-	
-
-	public List<User> getGameList() {
-		return gameList;
+	public List<User> getUserList() {
+		return userList;
 	}
 
 
 
-	public void setGameList(List<User> gameList) {
-		this.gameList = gameList;
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
 	}
+
 
 
 	@Override
@@ -108,7 +114,6 @@ public class Game {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + gameId;
-		result = prime * result + ((gameList == null) ? 0 : gameList.hashCode());
 		result = prime * result + phase;
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
 		return result;
@@ -127,11 +132,6 @@ public class Game {
 		Game other = (Game) obj;
 		if (gameId != other.gameId)
 			return false;
-		if (gameList == null) {
-			if (other.gameList != null)
-				return false;
-		} else if (!gameList.equals(other.gameList))
-			return false;
 		if (phase != other.phase)
 			return false;
 		if (startDate == null) {
@@ -149,7 +149,8 @@ public class Game {
 		return "Game [gameId=" + gameId + ", startDate=" + startDate + ", phase=" + phase + "]";
 	}
 
-	
+
+
 	
 	
 	

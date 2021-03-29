@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { USERS } from '../mock-user';
+import { LoginTemplate } from '../models/login-template.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,6 @@ export class UserServiceService implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-
   public login(username:string|undefined, password:string|undefined): User |undefined {
     let loginTemplate = {
       'username': username,
@@ -33,5 +33,13 @@ export class UserServiceService implements OnInit {
     // console.log(output);
     // //output.subscribe(data => {console.log(data);localStorage.setItem('User',JSON.stringify(data))})
     // return output;
+  }
+
+  public registerTeacher(loginTemplate: LoginTemplate): User{
+
+    var index = this.users.push({username:loginTemplate.username,id:this.users.length+1,game_game_id:0,portfolio_id:0,role:"Teacher"});
+    var output = this.users[index-1];
+    localStorage.setItem('user', JSON.stringify(output));
+    return output;
   }
 }

@@ -8,7 +8,9 @@ import com.revature.models.User;
 
 public interface GameController {
 	//CRUD
-	public void setGame(Game game);
+	public int setGame(Game game,  HttpServletRequest request);
 	
-	public Game getGame(User user, HttpServletRequest request);
+	public void update(Game game,  HttpServletRequest request);
+	
+	public Game getGameByUser(User user, HttpServletRequest request);
 }
