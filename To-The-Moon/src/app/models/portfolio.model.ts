@@ -3,5 +3,6 @@ export interface Portfolio{
     cash_value:number;
     stock_value:number;
     total_value:number;
+
     
 }
