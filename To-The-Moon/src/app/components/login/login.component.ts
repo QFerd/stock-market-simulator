@@ -19,32 +19,35 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.appComponent.clearUser();
   }
-
+  
   public login(): void {
     console.log(this.loginTemplate)
-    var currentUser = this.userService.login(this.loginTemplate?.username,this.loginTemplate?.password);
-    console.log(currentUser)
+    this.userService.login(this.loginTemplate?.username,this.loginTemplate?.password).subscribe(user=>{console.log(user);this.appComponent.user = user;this.loggedIn()});
 
-    if(currentUser?.role=='Teacher')
-    {
-      if (currentUser?.game_game_id == null || currentUser?.game_game_id == 0 ){
-        window.location.href="teacher/registry/classroom";
-      } else {
-        window.location.href='teacher/home';
-      }
-      
-    }
-    else if (currentUser?.role=='Student'){
-      window.location.href='home';
-    }
   }
   
   public registerTeacher(){
     var currentUser= this.userService.registerTeacher(this.loginTemplate);
-    if(currentUser?.role=='Teacher')
+    if(currentUser?.userRole=='Teacher')
       window.location.href = "teacher/registry/classroom";
     else
       alert("Something went wrong");
+  }
+
+  loggedIn(){
+    console.log(this.appComponent.user)
+    localStorage.setItem('user', JSON.stringify(this.appComponent.user));
+    if (this.appComponent.user?.userRole == 'Teacher') {
+      if (this.appComponent.user?.game_game_id == null || this.appComponent.user?.game_game_id == 0) {
+        window.location.href = "teacher/registry/classroom";
+      } else {
+        window.location.href = 'teacher/home';
+      }
+
+    }
+    else if (this.appComponent.user?.userRole == 'Student') {
+      window.location.href = 'home';
+    }
   }
 
 }
