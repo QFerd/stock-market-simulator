@@ -2,6 +2,7 @@ package com.revature.tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.revature.models.Game;
