@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,25 @@ public class Game {
 	}
 	
 	
+	
+	
+	public Game(int gameId) {
+		super();
+		this.gameId = gameId;
+	}
+
+
+
+
+	public Game(String startDate, int phase, List<User> userList) {
+		super();
+		this.startDate = startDate;
+		this.phase = phase;
+		this.userList = userList;
+	}
+
+
+
 
 	public Game(String startDate, int phase) {
 		super();

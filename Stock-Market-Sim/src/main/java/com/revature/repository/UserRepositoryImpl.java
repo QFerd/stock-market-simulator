@@ -31,20 +31,21 @@ public class UserRepositoryImpl implements UserRepository{
 	
 	@Override
 	public void register(User user) {
-		logger.info("Attempting to register user.");
+		logger.info("Attempting to register user from UserRepository.");
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
-		logger.info("Attempting to list all users.");
+		logger.info("Attempting to list all users from UserRepository.");
 		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
 	}
 
 	@Override
 	public User getUser(String username) {
 		try {
+			logger.info("Attempting to get user from UserRepository.");
 			return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("username", username))
 					.list().get(0);
 		} catch (IndexOutOfBoundsException e) {
@@ -56,6 +57,7 @@ public class UserRepositoryImpl implements UserRepository{
 	
 	@Override
 	public void createOrUpdateUser(User user) {
+		logger.info("Attempting to create or update user from UserRepository.");
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 		
 	}

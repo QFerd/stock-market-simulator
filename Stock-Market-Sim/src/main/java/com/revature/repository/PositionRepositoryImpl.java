@@ -34,6 +34,7 @@ public class PositionRepositoryImpl implements PositionRepository{
 	
 	@Override
 	public void createOrUpdatePosition(Position position) {
+		logger.info("Attempting to create or update position with PositionRepository.");
 		sessionFactory.getCurrentSession().saveOrUpdate(position);
 	}
 	
