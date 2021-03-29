@@ -1,11 +1,11 @@
-<div *ngIf="this.appComponent.user.role != ''">   
+<div *ngIf="this.appComponent.user.userRole != ''">   
     <nav class="navbar  navbar-expand-lg navbar-dark bg-dark ">
         <a class="navbar-brand" href="#">To The Moon: A game of historical investement</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div  *ngIf="this.appComponent.user.role == 'Teacher'"class="collapse navbar-collapse" id="navbarTogglerDemo02" >
+        <div  *ngIf="this.appComponent.user.userRole == 'Teacher'"class="collapse navbar-collapse" id="navbarTogglerDemo02" >
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                
                 <li class="nav-item active">
@@ -18,7 +18,7 @@
           <button type="button" class="btn btn-info" (click) = "logout()">Logout</button>
         </div>
 
-        <div  *ngIf="this.appComponent.user.role == 'Student'"class="collapse navbar-collapse" id="navbarTogglerDemo02" >
+        <div  *ngIf="this.appComponent.user.userRole == 'Student'"class="collapse navbar-collapse" id="navbarTogglerDemo02" >
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                
                 <li class="nav-item active">

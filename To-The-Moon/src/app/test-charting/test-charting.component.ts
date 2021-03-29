@@ -8,8 +8,10 @@ import { ChartType } from 'angular-google-charts';
 })
 export class TestChartingComponent implements OnInit {
 
-  constructor() { }
-
+  constructor() { 
+    this.dataTable=[['',0]];
+  }
+  public dataTable: [[string,number]];
   ngOnInit(): void {
   }
   title = 'Browser market shares at a specific website, 2014';
