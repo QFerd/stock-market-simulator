@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.revature.models.Deprecated;
 
 import java.util.Date;
 
