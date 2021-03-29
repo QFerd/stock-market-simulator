@@ -20,24 +20,26 @@ export class UserServiceService implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  public login(username:string|undefined, password:string|undefined): User |undefined {
+  loginUser:User={username:'',id:0,game_game_id:0,portfolio_id:0,userRole:''};
+
+  public login(username:string|undefined, password:string|undefined): Observable<User>{
     let loginTemplate = {
       'username': username,
       'password': password
     }
     
-    var output = this.users.find(data => data.username==loginTemplate.username);
-    localStorage.setItem('user', JSON.stringify(output));
-    return output;
-    //this.http.post<User>(`${TO_THE_MOON_URL}login`, loginTemplate , this.httpOptions);
-    // console.log(output);
-    // //output.subscribe(data => {console.log(data);localStorage.setItem('User',JSON.stringify(data))})
-    // return output;
+    // var output = this.users.find(data => data.username==loginTemplate.username);
+    // localStorage.setItem('user', JSON.stringify(output));
+    // return output;this.loginUser ={this.loginUser.username=data.username,this.loginUser.id=data.id,this.loginUser.game_game_id=data.game_game_id,this.loginUser.role=data.role}
+    
+    
+    //output.subscribe(data => {console.log(data);localStorage.setItem('User',JSON.stringify(data))}).subscribe(data=>{console.log(data);this.loginUser=data; return this.loginUser;}
+    return this.http.post<User>(`${TO_THE_MOON_URL}login`, loginTemplate , this.httpOptions);
   }
 
   public registerTeacher(loginTemplate: LoginTemplate): User{
 
-    var index = this.users.push({username:loginTemplate.username,id:this.users.length+1,game_game_id:0,portfolio_id:0,role:"Teacher"});
+    var index = this.users.push({username:loginTemplate.username,id:this.users.length+1,game_game_id:0,portfolio_id:0,userRole:"Teacher"});
     var output = this.users[index-1];
     localStorage.setItem('user', JSON.stringify(output));
     return output;
