@@ -1,4 +1,4 @@
-import { Position } from '../../models/position';
+import { Position } from '../../models/position.model';
 import { PositionService } from './../../services/position.service';
 import { Component, OnInit } from '@angular/core';
 import { POSITIONS } from '../../mock-positions'
@@ -37,7 +37,7 @@ export class PositionsComponent implements OnInit {
   }
 
   getPositions(): void {
-    this.positionService.getPositions(this.appComponent.user.portfolio_id)
+    this.positionService.getPositions(this.appComponent.user.portfolio.portfolio_id)
         .subscribe(positions => this.positions = positions);
   }
 

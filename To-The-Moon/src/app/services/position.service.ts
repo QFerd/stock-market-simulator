@@ -1,6 +1,6 @@
 import { Observable, of } from 'rxjs';
 import { POSITIONS } from './../mock-positions';
-import { Position } from '../models/position';
+import { Position } from '../models/position.model';
 import { Injectable } from '@angular/core';
 import { AppComponent } from '../app.component';
 

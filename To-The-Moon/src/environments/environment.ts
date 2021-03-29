@@ -6,6 +6,7 @@ export const environment = {
   production: false
 };
 
+
 export const TO_THE_MOON_URL = `http://localhost:8090/Stock-Market-Sim/`
 export const ALPHAVANTAGE_URL = `https://www.alphavantage.co/query?apikey=aKqHwBuTsDKdEZ7Aq9AYKHRfnH4A`;
 /*
