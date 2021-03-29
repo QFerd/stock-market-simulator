@@ -40,7 +40,7 @@ public class GameRepositoryImpl implements GameRepository {
 	public Game getGame(int gameId) {
 		logger.info("Attempting to get game from GameRepository.");
 		try {
-			return (Game) sessionFactory.getCurrentSession().createCriteria(Game.class).add(Restrictions.like("gameId", gameId));
+			return (Game) sessionFactory.getCurrentSession().get(Game.class, gameId);
 		} catch (IndexOutOfBoundsException e) {
 			logger.debug(e);
 			return null;
