@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     console.log(this.appComponent.user)
     localStorage.setItem('user', JSON.stringify(this.appComponent.user));
     if (this.appComponent.user?.userRole == 'Teacher') {
-      if (this.appComponent.user?.game_game_id == null || this.appComponent.user?.game_game_id == 0) {
+      if (this.appComponent.user?.game.game_game_id == null || this.appComponent.user?.game.game_game_id == 0) {
         window.location.href = "teacher/registry/classroom";
       } else {
         window.location.href = 'teacher/home';
