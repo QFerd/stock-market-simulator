@@ -1,3 +1,4 @@
+package com.revature.models.Deprecated;
 //package com.revature.models;
 //
 //import java.util.ArrayList;

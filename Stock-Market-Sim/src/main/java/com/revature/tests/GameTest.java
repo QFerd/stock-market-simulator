@@ -1,8 +1,12 @@
-package com.revature.models;
+package com.revature.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.revature.models.Game;
+import com.revature.models.Portfolio;
+import com.revature.models.User;
 
 public class GameTest {
 
