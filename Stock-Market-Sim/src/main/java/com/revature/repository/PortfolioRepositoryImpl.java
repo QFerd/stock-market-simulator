@@ -27,7 +27,7 @@ public class PortfolioRepositoryImpl implements PortfolioRepository{
 
 	@Override
 	public void newPortfolio(Portfolio portfolio) {
-		logger.info("Attempting to add new portfolio to DB.");
+		logger.info("Attempting to add new portfolio to DB with PortfolioRepository.");
 		sessionFactory.getCurrentSession().save(portfolio);
 	}
 
