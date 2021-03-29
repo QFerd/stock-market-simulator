@@ -1,4 +1,4 @@
-<ng-template [ngIf]="this.appComponent.user.portfolio_id>0" [ngIfElse]="hasGame">
+<ng-template [ngIf]="this.appComponent.user.portfolio_id>0||this.appComponent.user.portfolio_id==null" [ngIfElse]="hasGame">
     <div>
         Welcome To "To The Moon: A game of historic investing" please enter in the stock you would like
 
