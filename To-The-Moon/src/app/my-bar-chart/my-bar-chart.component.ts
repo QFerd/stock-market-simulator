@@ -64,7 +64,7 @@ export class MyBarChartComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.chartService.getData().subscribe(data => {
+    this.chartService.getData('IBM').subscribe(data => {
       this.recievedData = data; 
       console.log(data)
       

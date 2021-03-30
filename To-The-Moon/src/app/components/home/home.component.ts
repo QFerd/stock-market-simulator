@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     {stockSymbol:"CMC"}
   
   ];
-  timerId:any = setInterval(()=>{},5000);
+  timerId:any = setInterval(()=>{},3000);
   constructor(public appComponent: AppComponent, public userService: UserServiceService, private chartService: ChartService, private gameService:GameService) {
     if (this.appComponent.user.portfolio)
        this.timerId = setInterval(()=>{
@@ -42,13 +42,17 @@ export class HomeComponent implements OnInit {
    
   userToDisplay:User = this.appComponent.user;
   ngOnInit(): void {
-    
-    console.log(this.stocks[0]['stockSymbol'])
-    this.chartService.getData().subscribe(data => {
+    this.chartService.getData('GME').subscribe(data => {
       this.recievedData = data;
       console.log(data)
+      this.populateTable(data);
     })
   }
+
+
+
+
+
   stocksInputted:Position[]=[];
   newPortfolio:Portfolio = {cashValue:10000,portfolioId:0,positionList:[],stockValue:0,totalValue:10000};
   createPortoflio():void {
@@ -76,9 +80,17 @@ export class HomeComponent implements OnInit {
   }
 
   updateGame(){
-    console.log("updating game");
+    console.log("checking game");
     // this.populateTable();
-    this.gameService.getGamePhase(this.appComponent.user).subscribe()
+    this.gameService.getGamePhase(this.appComponent.user).subscribe(game=>
+      {
+        if(this.appComponent.user.game?.phase!=game.phase){
+          console.log("updating");
+          this.populateTable(this.recievedData);
+          this.appComponent.user.game=game;
+          
+        }
+      })
   }
 
 
@@ -88,24 +100,31 @@ export class HomeComponent implements OnInit {
 
   public dataArray: any = [];
 
-  public populateTable() {
+  public populateTable(recievedData:any) {
+    if(this.appComponent.user.game){
+      var dates
+      for (let i = 0; i < this.appComponent.user.game.phase;i++){
+
+      }
     this.barChartData=[]
     console.log("doing it");
     var date = this.date;
     var APIDataArr = []
     console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]);
-    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]))
-    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-06`]["4. close"]))
-    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-07`]["4. close"]))
-    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-08`]["4. close"]))
-    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-11`]["4. close"]))
-    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-12`]["4. close"]))
-    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-13`]["4. close"]))
+      console.log(recievedData["Time Series (Daily)"][`${date}-05`]["4. close"])
+    APIDataArr.push(Number.parseFloat(recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]))
+    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-06`]["4. close"]))
+    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-07`]["4. close"]))
+    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-08`]["4. close"]))
+    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-11`]["4. close"]))
+    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-12`]["4. close"]))
+    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-13`]["4. close"]))
     console.log(APIDataArr)
     //this.dataArray = APIDataArr
     this.barChartData.push({ data: APIDataArr, label: 'Inputted Data', fill: false, backgroundColor:'red',borderColor:'blue'});
     
     this.barChartLabels = ["testing", '2007', '2008', '2009', '2010', '2011', '2012']
+    }
   }
 
   //For chart:
