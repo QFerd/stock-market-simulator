@@ -1,0 +1,30 @@
+<div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5"><h1 class="jumbotron-title display-4">Current Game</h1></div>
+            <div class="col-md-4"></div>
+            <form class="phase-form form-inline">
+                <div class="form-group">
+                    <label for="phase">
+                        <h4>Phase: &nbsp; </h4>
+                    </label>
+                    <input type="text" class="form-control col-md-2" id="phase" [(ngModel)]="this.game.phase" disabled [ngModelOptions]="{standalone: true}">
+                    
+                </div>
+            </form>
+
+            <form class="in-game-date-form form-inline">
+                <div class="form-group">
+                    <label for="in-game-date">
+                        <h4>In Game Date: &nbsp; </h4>
+                    </label>
+                    <input type="date" class="form-control col-md-6" id="in-game-date"  [(ngModel)]="this.game.startDate" disabled [ngModelOptions]="{standalone: true}">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-dark" (click)="nextPhase()">Next Phase</button>

@@ -17,4 +17,9 @@ export class GameService {
     console.log(game)
     return this.http.post<number>(`${TO_THE_MOON_URL}setGame`,game);
   }
+
+  nextPhase(game:Game):Observable<Game> {
+    console.log(game)
+    return this.http.put<Game>(`${TO_THE_MOON_URL}updateGame`,game)
+  }
 }
