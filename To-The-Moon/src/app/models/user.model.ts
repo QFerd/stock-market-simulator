@@ -1,11 +1,13 @@
+import { Portfolio } from './portfolio.model';
+import { Game } from './game.model';
+
 export interface User {
 
     id: number;
     username: string;
     userRole: string;
-
-    portfolio_id:number;
-    game_game_id:number;
+    portfolio: Portfolio;
+    game: Game;
     //comment
     
     
