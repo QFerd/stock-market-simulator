@@ -17,12 +17,15 @@ export class MyBarChartComponent implements OnInit {
 
   public recievedData: any;
 
-  public date: String = "2001-01";
+  public date: String = "2021-01";
 
   public dataArray = [];
 
   public populateTable() {
-    console.log(this.recievedData["Monthly Time Series"]["2001-01-01"]);
+    var date = this.date;
+    console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]);
+    
+    
   }
 
   //For chart:
