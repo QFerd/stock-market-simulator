@@ -19,12 +19,24 @@ export class MyBarChartComponent implements OnInit {
 
   public date: String = "2021-01";
 
-  public dataArray = [];
+  public dataArray: any = [];
 
   public populateTable() {
     var date = this.date;
-    console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]);
-    
+    var APIDataArr = []
+    console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]);
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-06`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-07`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-08`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-11`]["4. close"]))
+    console.log(APIDataArr)
+    this.dataArray = APIDataArr
+      this.barChartData = [
+        {data: this.dataArray, label: 'Series A'},
+        {data: [130, 120, 150, 110, 130, 100, 160], label: 'Series B'},
+        {data: [130, 145, 140, 119, 186, 127, 190], label: 'Series C'}
+      ];
     
   }
 
@@ -42,9 +54,10 @@ export class MyBarChartComponent implements OnInit {
   public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
-  public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+  public barChartData: any = [
+    {data: this.dataArray, label: 'Series A'},
+    {data: [130, 120, 150, 110, 130, 100, 160], label: 'Series B'},
+    {data: [130, 145, 140, 119, 186, 127, 190], label: 'Series C'}
   ];
 
   ngOnInit(): void {
