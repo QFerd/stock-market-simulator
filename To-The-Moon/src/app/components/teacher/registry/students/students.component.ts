@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/user.model';
 import { USERS } from '../../../../mock-user'
 
@@ -11,8 +12,8 @@ export class StudentsComponent implements OnInit {
 
   users = USERS;
   selectedUser?: User;
-
-  constructor() { }
+  
+  constructor(public appComponent:AppComponent) { }
 
   ngOnInit(): void {
   }

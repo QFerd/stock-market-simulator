@@ -6,7 +6,7 @@ export interface User {
     id: number;
     username: string;
     userRole: string;
-    portfolio: Portfolio;
+    portfolio: Portfolio|null;
     game: Game;
     //comment
     
