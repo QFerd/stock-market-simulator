@@ -1,7 +1,7 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.REGISTRATION_SUCCESSFUL;
-import static com.revature.util.ClientMessageUtil.SOMETHING_WRONG;
+import static com.revature.util.ClientMessageUtil.*;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,9 +46,10 @@ public class GameControllerImpl implements GameController {
 	}
 
 	@PostMapping("/updateGame")
-	public void update(@RequestBody Game game,  HttpServletRequest request) {
+	public @ResponseBody ClientMessage update(@RequestBody Game game,  HttpServletRequest request) {
 		request.getSession();
 		gameService.updateGame(game);
+		return UPDATE_SUCCESFULL;
 	}
 	
 }
