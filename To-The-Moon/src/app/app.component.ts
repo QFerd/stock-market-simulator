@@ -27,7 +27,9 @@ export class AppComponent implements OnInit {
     } 
   }
 
+
    user: User = {id:0,portfolio: { portfolio_id: 0, cash_value: 0, stock_value: 0, total_value: 0, positions: [] },userRole:'',username:'',game: { game_game_id: 0, phase: 0, startDate: "2010/01/01" }};
+
 
   public makeStudent():void {
     this.user.userRole='Student';
