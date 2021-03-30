@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
   }
   
   public registerTeacher(){
-    var currentUser= this.userService.registerTeacher(this.loginTemplate);
-    if(currentUser?.userRole=='Teacher')
-      window.location.href = "teacher/registry/classroom";
-    else
-      alert("Something went wrong");
+    this.userService.registerTeacher(this.loginTemplate).subscribe(data=>
+      {
+        this.login();
+      })
+
   }
 
   loggedIn(){

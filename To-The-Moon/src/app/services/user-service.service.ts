@@ -37,13 +37,11 @@ export class UserServiceService implements OnInit {
     //output.subscribe(data => {console.log(data);localStorage.setItem('User',JSON.stringify(data))}).subscribe(data=>{console.log(data);this.loginUser=data; return this.loginUser;}
     return this.http.post<User>(`${TO_THE_MOON_URL}login`, loginTemplate, this.httpOptions);
   }
-
-  public registerTeacher(loginTemplate: LoginTemplate): User {
-
-    var index = this.users.push({ password:'',username: loginTemplate.username, id: this.users.length + 1, game: null, portfolio: null, userRole: "Teacher" });
-    var output = this.users[index - 1];
-    localStorage.setItem('user', JSON.stringify(output));
-    return output;
+  teacherToRegister:User = {game:null,id:0,password:'',portfolio:null,userRole:'Teacher',username:''}
+  public registerTeacher(loginTemplate: LoginTemplate): Observable<string> {
+    this.teacherToRegister.username=loginTemplate.username;
+    this.teacherToRegister.password=loginTemplate.password;
+    return this.http.post<string>(`${TO_THE_MOON_URL}register`, this.teacherToRegister, this.httpOptions)
   }
 
   public setUser(userToSend: User): Observable<String> {

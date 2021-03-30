@@ -16,7 +16,7 @@ export class StudentsComponent implements OnInit {
   
   constructor(public appComponent:AppComponent, public userServiceService: UserServiceService) { }
 
-  timerId: any = setInterval(() => { console.log(this.appComponent.user);console.log(this.UserToSend);}, 5000);
+  
   ngOnInit(): void {
   }
 
