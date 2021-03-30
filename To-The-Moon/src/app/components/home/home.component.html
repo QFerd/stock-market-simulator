@@ -1,5 +1,5 @@
 
-<ng-template [ngIf]="this.appComponent.user.portfolio.portfolio_id>0" [ngIfElse]="hasGame">
+<ng-template [ngIf]="!this.appComponent.user.portfolio" [ngIfElse]="hasGame">
 
     <div>
         Welcome To "To The Moon: A game of historic investing" please enter in the stock you would like
@@ -7,8 +7,13 @@
         <br>
 
         <div *ngFor="let number of [1,2,3,4,5,6]">
-            Stock {{number}} <input text="" onchange=""/>
+            Stock {{number}} <select id="stock{{number}}">
+                <option>Select Stock</option>
+                <option *ngFor="let stock of this.stocks">{{stock.name}}</option>
+            </select>
         </div>
+
+        <button (click)="createPortoflio()" class="btn btn-primary">submit</button>
     </div>
 </ng-template>
 <ng-template #hasGame>
