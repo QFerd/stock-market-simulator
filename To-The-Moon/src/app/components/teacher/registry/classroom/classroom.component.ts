@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { Game } from 'src/app/models/game.model';
 import { GameService } from 'src/app/services/game.service';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-classroom',
@@ -10,7 +11,7 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class ClassroomComponent implements OnInit {
 
-  constructor(public appComponent:AppComponent, public gameService:GameService) { this.date=new Date(Date.now())}
+  constructor(public appComponent:AppComponent, public gameService:GameService, public userService:UserServiceService) { this.date=new Date(Date.now())}
 
   ngOnInit(): void {
   }
@@ -23,9 +24,16 @@ export class ClassroomComponent implements OnInit {
         this.gameToSend.startDate=this.date.toString();
         this.gameService.registerGame(this.gameToSend).subscribe(index =>{
         if(this.date!=null)
-        {  this.appComponent.user.game = {game_game_id:index, phase: 1, startDate: this.date.toString()};
-        console.log(this.appComponent.user.game);
-         window.location.href = "teacher/registry/students"
+        {  
+          this.appComponent.user.game = {game_game_id:index, phase: 1, startDate: this.date.toString()};
+          console.log(this.appComponent.user);
+          this.userService.setUser(this.appComponent.user).subscribe(data => {
+            console.log(this.appComponent.user);
+            this.appComponent.setUser(this.appComponent.user);
+            localStorage.setItem("user",JSON.stringify(this.appComponent.user));
+            window.location.href = "teacher/registry/students"
+          });
+          
       }
       });
     }

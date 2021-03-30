@@ -25,12 +25,12 @@ export class AppComponent implements OnInit {
     if (userInStorage != null) {
       this.user = JSON.parse(userInStorage);
     } else {
-      this.user = { username: '', userRole: '', id: 0, portfolio: null, game: null};
+      this.user = {password:'', username: '', userRole: '', id: 0, portfolio: null, game: null};
     } 
   }
 
 
-   user: User = {id:0,portfolio: null,userRole:'',username:'',game: null};
+   user: User = {password:'',id:0,portfolio: null,userRole:'',username:'',game: null};
 
 
   public makeStudent():void {
@@ -44,6 +44,10 @@ export class AppComponent implements OnInit {
 
   public clearUser():void{
     localStorage.clear();
-    this.user = { id: 0, portfolio: null, userRole: '', username: '', game: null};
+    this.user = {password:'', id: 0, portfolio: null, userRole: '', username: '', game: null};
+  }
+
+  public setUser(user:User){
+    this.user=user;
   }
 }

@@ -21,7 +21,7 @@ export class UserServiceService implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  loginUser: User = { username: '', id: 0, game: null, portfolio: null, userRole: '' };
+  loginUser: User = {password:'', username: '', id: 0, game: null, portfolio: null, userRole: '' };
 
   public login(username: string | undefined, password: string | undefined): Observable<User> {
     let loginTemplate = {
@@ -40,7 +40,7 @@ export class UserServiceService implements OnInit {
 
   public registerTeacher(loginTemplate: LoginTemplate): User {
 
-    var index = this.users.push({ username: loginTemplate.username, id: this.users.length + 1, game: null, portfolio: null, userRole: "Teacher" });
+    var index = this.users.push({ password:'',username: loginTemplate.username, id: this.users.length + 1, game: null, portfolio: null, userRole: "Teacher" });
     var output = this.users[index - 1];
     localStorage.setItem('user', JSON.stringify(output));
     return output;
@@ -52,6 +52,11 @@ export class UserServiceService implements OnInit {
     return this.http.post<String>(`${TO_THE_MOON_URL}setUser`, userToSend, this.httpOptions)
   
     
+  }
+
+  public registerUser(userToSend:User): Observable<String> {
+    return this.http.post<String>(`${TO_THE_MOON_URL}register`, userToSend, this.httpOptions)
+
   }
 
 }

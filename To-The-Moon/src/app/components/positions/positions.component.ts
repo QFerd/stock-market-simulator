@@ -37,8 +37,8 @@ export class PositionsComponent implements OnInit {
   }
 
   getPositions(): void {
-    if (this.appComponent.user.portfolio?.positions)
-      this.positions=this.appComponent.user.portfolio.positions;
+    if (this.appComponent.user.portfolio?.positionList)
+      this.positions=this.appComponent.user.portfolio.positionList;
   }
 
 }
