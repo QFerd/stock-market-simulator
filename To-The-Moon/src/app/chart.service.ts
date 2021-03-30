@@ -13,6 +13,6 @@ export class ChartService {
 
   public getData(): Observable<any> {
     console.log("hi")
-    return this.http.get("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=IBM&apikey=demo")
+    return this.http.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo")
   }
 }
