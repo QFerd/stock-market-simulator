@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
 import { StockService } from '../services/stock.service';
@@ -29,8 +30,8 @@ export class TestChartingComponent implements OnInit {
     }));
   }
   title = 'Browser market shares at a specific website, 2014';
-  type:ChartType = ChartType.LineChart;
-
+  type: ChartType = ChartType.LineChart;
+ 
   doTheData(){
   }
 
