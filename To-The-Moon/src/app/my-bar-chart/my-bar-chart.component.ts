@@ -13,7 +13,7 @@ import { ChartService } from '../services/chart.service';
 
 export class MyBarChartComponent implements OnInit {
 
-  constructor(private chartService: ChartService) { }
+  constructor(private chartService: ChartService) {window.onload = this.populateTable }
 
   public recievedData: any;
 
@@ -22,6 +22,7 @@ export class MyBarChartComponent implements OnInit {
   public dataArray: any = [];
 
   public populateTable() {
+    console.log("doing it");
     var date = this.date;
     var APIDataArr = []
     console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]);
@@ -66,7 +67,10 @@ export class MyBarChartComponent implements OnInit {
     this.chartService.getData().subscribe(data => {
       this.recievedData = data; 
       console.log(data)
+      
     })
+
+    
   }
 
 }
