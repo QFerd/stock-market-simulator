@@ -17,7 +17,7 @@ export class UserServiceService implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
-  constructor(private http: HttpClient, private appComponent: AppComponent) { }
+  constructor(private http: HttpClient) { }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
