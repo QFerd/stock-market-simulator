@@ -14,7 +14,7 @@ export class PositionDetailComponent implements OnInit {
   @Input() position: Position|undefined;
 
   constructor(public stockService:StockService) {
-    this.position = {portfolio_id_fk:0,position_id:0,portfolio_portfolio_id:0,quantity:0,stockSymbol:''};
+    this.position = {positionId:0,quantity:0,stockSymbol:''};
    }
 
   ngOnInit() {

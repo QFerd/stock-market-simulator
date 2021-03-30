@@ -8,6 +8,7 @@ export interface User {
     userRole: string;
     portfolio: Portfolio|null;
     game: Game|null;
+    password:string;
     //comment
     
     
