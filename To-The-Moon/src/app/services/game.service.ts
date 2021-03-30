@@ -25,6 +25,6 @@ export class GameService {
     return this.http.post<string>(`${TO_THE_MOON_URL}updateGame`,game)
   }
   getGamePhase(user: User | undefined):Observable<Game> {
-    return this.http.post<Game>(`${TO_THE_MOON_URL}getGamer`,user);
+    return this.http.post<Game>(`${TO_THE_MOON_URL}getGame`,user);
   }
 }
