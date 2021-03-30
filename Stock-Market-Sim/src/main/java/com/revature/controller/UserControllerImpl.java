@@ -1,9 +1,9 @@
 package com.revature.controller;
 
 
-import static com.revature.util.ClientMessageUtil.REGISTRATION_SUCCESSFUL;
 
-import static com.revature.util.ClientMessageUtil.SOMETHING_WRONG;
+
+import static com.revature.util.ClientMessageUtil.*;
 
 import java.util.List;
 
@@ -49,8 +49,9 @@ public class UserControllerImpl implements UserController{
 	
 
 	@PostMapping("/setUser")
-	public @ResponseBody void setUser(@RequestBody User user, HttpServletRequest request) {
+	public @ResponseBody ClientMessage setUser(@RequestBody User user, HttpServletRequest request) {
 		userService.createOrUpdateUser(user);
+		return  UPDATE_SUCCESFULL;
 		
 	}
 	
