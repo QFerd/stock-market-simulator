@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     if(this.stocksInputted.length>0){
        this.newPortfolio.positions=this.stocksInputted;
        this.appComponent.user.portfolio=this.newPortfolio;
-       this.userService.setUser();
+       this.userService.setUser(this.appComponent.user);
     }
     console.log(this.appComponent.user);
   }
