@@ -14,7 +14,11 @@ export class StockService {
   }
   constructor(private http:HttpClient) { }
 
+  // getArrayOfPositions():A
+
   getStockBySymbol(symbol:string,timeStart:string): Observable<string>{
-    return this.http.get<string>(`${ALPHAVANTAGE_URL}&function=TIME_SERIES_MONTHLY&symbol=${symbol}&time_start=${timeStart}`);
-    }
+    return this.http.get<string>(`${ALPHAVANTAGE_URL}&function=TIME_SERIES_MONTHLY&symbol=${symbol}`);
+  }
+
+
 }

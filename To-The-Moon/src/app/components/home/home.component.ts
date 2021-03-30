@@ -9,6 +9,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { User } from 'src/app/models/user.model';
 import { ChartType } from 'chart.js';
 import { ChartService } from 'src/app/services/chart.service';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-home',
@@ -31,14 +32,15 @@ export class HomeComponent implements OnInit {
   
   ];
   timerId:any = setInterval(()=>{},5000);
-  constructor(public appComponent: AppComponent, public userService: UserServiceService, private chartService: ChartService) {
+  constructor(public appComponent: AppComponent, public userService: UserServiceService, private chartService: ChartService, private gameService:GameService) {
     if (this.appComponent.user.portfolio)
        this.timerId = setInterval(()=>{
          this.updateGame();
         },5000);
+    // window.onload= this.populateTable;
    }
    
-   userToDisplay:User = this.appComponent.user;
+  userToDisplay:User = this.appComponent.user;
   ngOnInit(): void {
     
     console.log(this.stocks[0]['stockSymbol'])
@@ -74,7 +76,9 @@ export class HomeComponent implements OnInit {
   }
 
   updateGame(){
-    
+    console.log("updating game");
+    // this.populateTable();
+    if(this.gameService.getGamePhase(this.appComponent.user))
   }
 
 
@@ -85,6 +89,8 @@ export class HomeComponent implements OnInit {
   public dataArray: any = [];
 
   public populateTable() {
+    this.barChartData=[]
+    console.log("doing it");
     var date = this.date;
     var APIDataArr = []
     console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]);
