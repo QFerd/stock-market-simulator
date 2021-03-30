@@ -18,6 +18,10 @@ import { ClassroomComponent } from './components/teacher/registry/classroom/clas
 import { StudentsComponent } from './components/teacher/registry/students/students.component';
 import { TestChartingComponent } from './test-charting/test-charting.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { ChartsModule } from 'ng2-charts';
+import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
+
+
 
 
 @NgModule({
@@ -35,6 +39,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     ClassroomComponent,
     StudentsComponent,
     TestChartingComponent,
+    MyBarChartComponent,
    
     
   ],
@@ -43,7 +48,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserModule, GoogleChartsModule
+    BrowserModule, GoogleChartsModule,
+    ChartsModule
 
   ],
   providers: [],
