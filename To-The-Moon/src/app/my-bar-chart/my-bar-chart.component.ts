@@ -25,17 +25,32 @@ export class MyBarChartComponent implements OnInit {
     var date = this.date;
     var APIDataArr = []
     console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]);
+    // var timeSeries = this.recievedData["Time Series (Daily)"]
+    // var i =0;
+    // for (var e in timeSeries) {
+    //   // maybe: (parseInt(date.slice(5,7)) to determine date
+    //   if (i < 5) {
+    //     APIDataArr.push(parseInt(e[<any>"4. close"]));
+    //     i++;
+
+    //   } else {
+    //     break;
+    //   }
+
+    // }
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-06`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-07`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-08`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-11`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-12`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-13`]["4. close"]))
     console.log(APIDataArr)
     this.dataArray = APIDataArr
       this.barChartData = [
-        {data: this.dataArray, label: 'Series A'},
-        {data: [130, 120, 150, 110, 130, 100, 160], label: 'Series B'},
-        {data: [130, 145, 140, 119, 186, 127, 190], label: 'Series C'}
+        {data: this.dataArray, label: 'Daily Time Series'},
+        {data: [130, 120, 130, 120, 130, 120, 130], label: 'Series B'},
+        {data: [120, 125, 122, 130, 128, 127, 120], label: 'Series C'}
       ];
     
   }
@@ -56,8 +71,8 @@ export class MyBarChartComponent implements OnInit {
   public barChartLegend = true;
   public barChartData: any = [
     {data: this.dataArray, label: 'Series A'},
-    {data: [130, 120, 150, 110, 130, 100, 160], label: 'Series B'},
-    {data: [130, 145, 140, 119, 186, 127, 190], label: 'Series C'}
+    {data: [130, 120, 130, 120, 130, 120, 130], label: 'Series B'},
+    {data: [120, 125, 122, 130, 128, 127, 120], label: 'Series C'}
   ];
 
   ngOnInit(): void {
