@@ -44,4 +44,11 @@ export class UserServiceService implements OnInit {
     localStorage.setItem('user', JSON.stringify(output));
     return output;
   }
+
+  // public registerStudent(loginTemplate):Observable<number> {
+  //   console.log(game)
+  //   return this.http.post<number>(`${TO_THE_MOON_URL}setGame`,game);
+  // }
 }
+
+
