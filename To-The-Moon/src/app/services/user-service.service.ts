@@ -1,3 +1,4 @@
+import { AppComponent } from 'src/app/app.component';
 import { TO_THE_MOON_URL } from './../../environments/environment';
 import { ClientMessage } from './../models/client-message.model';
 import { Injectable, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class UserServiceService implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private appComponent: AppComponent) { }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -45,10 +46,12 @@ export class UserServiceService implements OnInit {
     return output;
   }
 
-  // public registerStudent(loginTemplate):Observable<number> {
-  //   console.log(game)
-  //   return this.http.post<number>(`${TO_THE_MOON_URL}setGame`,game);
-  // }
+  public setUser(userToSend: User): Observable<String> {
+    
+    
+    return this.http.post<String>(`${TO_THE_MOON_URL}setUser`, userToSend, this.httpOptions)
+  
+    
+  }
+
 }
-
-
