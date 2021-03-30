@@ -19,7 +19,7 @@ export class TeacherHomeComponent implements OnInit {
    }
 
   user: User =  this.appComponent.user;
-  game: Game = {game_game_id: 0, phase: 0, startDate:''};
+  game: Game = {gameId: 0, phase: 0, startDate:''};
 
   ngOnInit(): void {
   }

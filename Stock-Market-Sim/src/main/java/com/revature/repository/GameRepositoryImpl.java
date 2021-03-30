@@ -49,7 +49,7 @@ public class GameRepositoryImpl implements GameRepository {
 
 	public void updateGame(Game game) {
 		logger.info("Attempting to update game from GameRepository.");
-		sessionFactory.getCurrentSession().update(game);
+		sessionFactory.getCurrentSession().saveOrUpdate(game);
 		
 	}
 	

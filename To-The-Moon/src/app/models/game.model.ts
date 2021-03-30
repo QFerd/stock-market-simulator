@@ -1,6 +1,6 @@
 export interface Game {
 
-    game_game_id: number;
+    gameId: number;
     phase: number;
     startDate: string;
 

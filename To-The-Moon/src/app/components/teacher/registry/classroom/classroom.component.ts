@@ -16,7 +16,7 @@ export class ClassroomComponent implements OnInit {
   ngOnInit(): void {
   }
   date:Date;
-  gameToSend: Game = { game_game_id: 0, phase: 1, startDate: '' }
+  gameToSend: Game = { gameId: 0, phase: 1, startDate: '' }
   createClassroom(): void {
     console.log(this.date.toString())
     if(this.date!=null)
@@ -25,7 +25,7 @@ export class ClassroomComponent implements OnInit {
         this.gameService.registerGame(this.gameToSend).subscribe(index =>{
         if(this.date!=null)
         {  
-          this.appComponent.user.game = {game_game_id:index, phase: 1, startDate: this.date.toString()};
+          this.appComponent.user.game = {gameId:index, phase: 1, startDate: this.date.toString()};
           console.log(this.appComponent.user);
           this.userService.setUser(this.appComponent.user).subscribe(data => {
             console.log(this.appComponent.user);
