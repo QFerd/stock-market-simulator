@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 import { ChartType } from 'chart.js';
 import { Observable } from 'rxjs';
-import { ChartService } from '../chart.service';
+import { ChartService } from '../services/chart.service';
 
 @Component({
   selector: 'app-my-bar-chart',
@@ -49,8 +49,8 @@ export class MyBarChartComponent implements OnInit {
     this.dataArray = APIDataArr
       this.barChartData = [
         {data: this.dataArray, label: 'Daily Time Series'},
-        {data: [130, 120, 130, 120, 130, 120, 130], label: 'Series B'},
-        {data: [120, 125, 122, 130, 128, 127, 120], label: 'Series C'}
+        {data: [130, 120, 130, 120, 130, 120, 130], label: 'AMC'},
+        {data: [120, 125, 122, 130, 128, 127, 120], label: 'GME'}
       ];
     
   }
