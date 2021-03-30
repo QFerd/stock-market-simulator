@@ -1,3 +1,3 @@
 export interface stock{
-    name:String;
+    stockSymbol:String;
 }
