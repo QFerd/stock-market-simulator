@@ -46,4 +46,8 @@ export class AppComponent implements OnInit {
     localStorage.clear();
     this.user = { id: 0, portfolio: null, userRole: '', username: '', game: null};
   }
+
+  public setUser(user:User){
+    this.user=user;
+  }
 }

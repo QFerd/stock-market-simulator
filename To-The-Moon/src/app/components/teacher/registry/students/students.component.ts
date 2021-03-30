@@ -14,14 +14,17 @@ export class StudentsComponent implements OnInit {
   users = USERS;
   selectedUser?: User;
   
-  constructor(public appComponent:AppComponent, private userServiceService: UserServiceService) { }
+  constructor(public appComponent:AppComponent, public userServiceService: UserServiceService) { }
 
+  timerId: any = setInterval(() => { console.log(this.appComponent.user);console.log(this.UserToSend);}, 5000);
   ngOnInit(): void {
   }
 
   UserToSend: User = { username: '', id: 0, game: this.appComponent.user.game , portfolio: null, userRole: 'Student' };
   sendtheUser(): void {
-    this.userServiceService.setUser(this.UserToSend)
+    console.log("Sending " + this.UserToSend.username)
+    this.userServiceService.registerUser(this.UserToSend).subscribe(response =>
+      console.log(response));
   }
   
 
