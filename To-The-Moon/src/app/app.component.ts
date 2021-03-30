@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { USERS } from './mock-user';
 import { Portfolio } from './models/portfolio.model';
+import { Position } from './models/position.model';
+
 import { User } from './models/user.model';
 import { UserServiceService } from './services/user-service.service';
 
