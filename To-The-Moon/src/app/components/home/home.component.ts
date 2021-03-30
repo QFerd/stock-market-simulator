@@ -5,7 +5,7 @@ import { TimeInterval } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { Portfolio } from 'src/app/models/portfolio.model';
 import { stock } from 'src/app/models/stock.model';
-import { STOCKS } from 'src/app/PotentialStocks';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   
   ];
   timerId:any = setInterval(()=>{},5000);
-  constructor(public appComponent:AppComponent) {
+  constructor(public appComponent:AppComponent,public userService:UserServiceService) {
     if (this.appComponent.user.portfolio)
        this.timerId = setInterval(()=>{
          this.updateGame();
@@ -41,9 +41,12 @@ export class HomeComponent implements OnInit {
         this.stocksInputted.push({stockSymbol:doc.value,portfolio_id_fk:0,portfolio_portfolio_id:0,position_id:0,quantity:0});
     }
     console.log(this.stocksInputted);
-    if(this.stocksInputted.length>0)
-      // this.newPortfolio.positions.push(this.stocksInputted);
-    this.appComponent.user.portfolio
+    if(this.stocksInputted.length>0){
+       this.newPortfolio.positions=this.stocksInputted;
+       this.appComponent.user.portfolio=this.newPortfolio;
+       this.userService.setUser();
+    }
+    console.log(this.appComponent.user);
   }
 
   getPortoflio():void {
