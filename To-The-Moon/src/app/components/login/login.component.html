@@ -11,7 +11,7 @@
             <label for="password-text">Password:</label>
             <input type="password" [(ngModel)]="this.loginTemplate.password" class="form-control" id="password-text">
         </div>
-
+        <p style="color: red;" hidden id='errorText'>No username found</p>
         <button style="margin-right: 1em;" class="btn btn-primary btn-center" (click)="login()">Login</button>
         <br><span>Would you like to register as a teacher: </span><a href='' data-toggle="modal" data-target="#exampleModal" style="color: blue;">Sign up</a>
     </div> 

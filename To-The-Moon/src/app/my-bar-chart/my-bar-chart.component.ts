@@ -25,19 +25,6 @@ export class MyBarChartComponent implements OnInit {
     var date = this.date;
     var APIDataArr = []
     console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]);
-    // var timeSeries = this.recievedData["Time Series (Daily)"]
-    // var i =0;
-    // for (var e in timeSeries) {
-    //   // maybe: (parseInt(date.slice(5,7)) to determine date
-    //   if (i < 5) {
-    //     APIDataArr.push(parseInt(e[<any>"4. close"]));
-    //     i++;
-
-    //   } else {
-    //     break;
-    //   }
-
-    // }
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-06`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-07`]["4. close"]))
@@ -48,11 +35,11 @@ export class MyBarChartComponent implements OnInit {
     console.log(APIDataArr)
     this.dataArray = APIDataArr
       this.barChartData = [
-        {data: this.dataArray, label: 'Daily Time Series'},
+        {data: this.dataArray, label: 'Inputted Data',fill:false},
         {data: [130, 120, 130, 120, 130, 120, 130], label: 'AMC'},
         {data: [120, 125, 122, 130, 128, 127, 120], label: 'GME'}
       ];
-    
+    this.barChartLabels = ["testing", '2007', '2008', '2009', '2010', '2011', '2012']
   }
 
   //For chart:
@@ -70,7 +57,7 @@ export class MyBarChartComponent implements OnInit {
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
   public barChartData: any = [
-    {data: this.dataArray, label: 'Series A'},
+    {data: this.dataArray, label: 'Series A', fill:false},
     {data: [130, 120, 130, 120, 130, 120, 130], label: 'Series B'},
     {data: [120, 125, 122, 130, 128, 127, 120], label: 'Series C'}
   ];

@@ -20,7 +20,7 @@ export class StudentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  UserToSend: User = { username: '', id: 0, game: this.appComponent.user.game , portfolio: null, userRole: 'Student' };
+  UserToSend: User = {password:'', username: '', id: 0, game: this.appComponent.user.game , portfolio: null, userRole: 'Student' };
   sendtheUser(): void {
     console.log("Sending " + this.UserToSend.username)
     this.userServiceService.registerUser(this.UserToSend).subscribe(response =>
