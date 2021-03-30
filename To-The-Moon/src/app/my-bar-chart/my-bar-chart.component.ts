@@ -43,10 +43,12 @@ export class MyBarChartComponent implements OnInit {
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-07`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-08`]["4. close"]))
     APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-11`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-12`]["4. close"]))
+    APIDataArr.push(parseInt(this.recievedData["Time Series (Daily)"][`${date}-13`]["4. close"]))
     console.log(APIDataArr)
     this.dataArray = APIDataArr
       this.barChartData = [
-        {data: this.dataArray, label: 'Series A'},
+        {data: this.dataArray, label: 'Daily Time Series'},
         {data: [130, 120, 130, 120, 130, 120, 130], label: 'Series B'},
         {data: [120, 125, 122, 130, 128, 127, 120], label: 'Series C'}
       ];
