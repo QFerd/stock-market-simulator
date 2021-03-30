@@ -20,7 +20,7 @@ export class UserServiceService implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  loginUser: User = { username: '', id: 0, game: { game_game_id: 0, phase: 0, startDate: "04/30/2009" }, portfolio: { portfolio_id: 0, cash_value: 0, stock_value: 0, total_value: 0, positions: [{ position_id: 0, quantity: 0, stock_symbol: 'aarp', portfolio_portfolio_id: 0, portfolio_id_fk: 0 }] }, userRole: '' };
+  loginUser: User = { username: '', id: 0, game: null, portfolio: null, userRole: '' };
 
   public login(username: string | undefined, password: string | undefined): Observable<User> {
     let loginTemplate = {
@@ -39,7 +39,7 @@ export class UserServiceService implements OnInit {
 
   public registerTeacher(loginTemplate: LoginTemplate): User {
 
-    var index = this.users.push({ username: loginTemplate.username, id: this.users.length + 1, game: { game_game_id: 0, phase: 0, startDate: "2010/01/01" }, portfolio: { portfolio_id: 0, cash_value: 0, stock_value: 0, total_value: 0, positions: [{ position_id: 0, quantity: 0, stock_symbol: 'aarp', portfolio_portfolio_id: 0, portfolio_id_fk: 0 }] }, userRole: "Teacher" });
+    var index = this.users.push({ username: loginTemplate.username, id: this.users.length + 1, game: null, portfolio: null, userRole: "Teacher" });
     var output = this.users[index - 1];
     localStorage.setItem('user', JSON.stringify(output));
     return output;
