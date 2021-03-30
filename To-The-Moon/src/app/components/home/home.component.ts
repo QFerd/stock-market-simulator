@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
   updateGame(){
     console.log("updating game");
     // this.populateTable();
-    if(this.gameService.getGamePhase(this.appComponent.user))
+    this.gameService.getGamePhase(this.appComponent.user).subscribe()
   }
 
 
