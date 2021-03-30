@@ -54,4 +54,9 @@ export class UserServiceService implements OnInit {
     
   }
 
+  public registerUser(userToSend:User): Observable<String> {
+    return this.http.post<String>(`${TO_THE_MOON_URL}register`, userToSend, this.httpOptions)
+
+  }
+
 }
