@@ -1,14 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import * as Chart from 'chart.js';
 import { ChartType } from 'chart.js';
+import { Observable } from 'rxjs';
+import { ChartService } from '../chart.service';
 
 @Component({
   selector: 'app-my-bar-chart',
   templateUrl: './my-bar-chart.component.html',
   styleUrls: ['./my-bar-chart.component.css']
 })
+
+
 export class MyBarChartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private chartService: ChartService) { }
+
+  public recievedData: any;
+
+  public date: String = "2021-01";
+
+  public dataArray = [];
+
+  public populateTable() {
+    var date = this.date;
+    console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]);
+    
+    
+  }
+
+  //For chart:
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -28,6 +48,10 @@ export class MyBarChartComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.chartService.getData().subscribe(data => {
+      this.recievedData = data; 
+      console.log(data)
+    })
   }
 
 }
