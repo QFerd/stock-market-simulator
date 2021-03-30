@@ -6,4 +6,6 @@ public class ClientMessageUtil {
 	public static final ClientMessage REGISTRATION_SUCCESSFUL = new ClientMessage("REGISTRATION SUCCESSFUL");
 	
 	public static final ClientMessage SOMETHING_WRONG = new ClientMessage("SOMETHING WRONG");
+	
+	public static final ClientMessage UPDATE_SUCCESFULL = new ClientMessage("UPDATE SUCCESFULL");
 }

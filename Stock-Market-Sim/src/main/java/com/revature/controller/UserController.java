@@ -12,7 +12,7 @@ public interface UserController {
 	
 	public User loginUser(User user, HttpServletRequest request);
 	
-	public void setUser(User user, HttpServletRequest request);
+	public ClientMessage setUser(User user, HttpServletRequest request);
 	
 	public List<User> getAllUsers();
 }
