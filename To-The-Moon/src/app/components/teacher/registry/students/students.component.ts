@@ -23,8 +23,11 @@ export class StudentsComponent implements OnInit {
   UserToSend: User = {password:'', username: '', id: 0, game: this.appComponent.user.game , portfolio: null, userRole: 'Student' };
   sendtheUser(): void {
     console.log("Sending " + this.UserToSend.username)
-    this.userServiceService.registerUser(this.UserToSend).subscribe(response =>
-      console.log(response));
+    this.userServiceService.registerUser(this.UserToSend).subscribe(response =>{
+      console.log(response)
+      this.UserToSend={password:'',username:'',id:0,game: this.appComponent.user.game, portfolio:null,userRole:'Student'}
+      alert("User sent and added to your class");
+    });
   }
   
 
