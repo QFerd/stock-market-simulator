@@ -1,1 +1,15 @@
 
+.navbar {
+    border-bottom: solid white 2px;
+ 
+}
+
+.navbar-brand, a {
+     color:#d9dcd6ff;
+}
+
+.active {
+    color: darkgray;
+}
+
+
