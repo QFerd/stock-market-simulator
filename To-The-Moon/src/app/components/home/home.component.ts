@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
       console.log("Start Month =" + this.startMonth);
       console.log("Start Day =" + this.startDay);
     }
-    this.chartService.getData('GME').subscribe(data => {
+    this.chartService.getData('IBM').subscribe(data => {
       this.recievedData = data;
       console.log(data)
       this.barChartData = [];
