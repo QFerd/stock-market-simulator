@@ -75,7 +75,7 @@ export class PositionDetailComponent implements OnInit {
     }
   };
   public title: string = 'balance'
-  public barChartLabels = ['', '', '', '', '', '', ''];
+  public barChartLabels = [''];
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
   public barChartData: any = [
