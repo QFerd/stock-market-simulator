@@ -1,9 +1,7 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
+
 Built-By: mjgre
-=======
-Built-By: Sophie
->>>>>>> 4d9d821c2b5ba946f945f6b801bfcefd9537f24c
+
 Build-Jdk: 15.0.1
 Created-By: Maven Integration for Eclipse
 

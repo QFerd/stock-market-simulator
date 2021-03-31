@@ -45,7 +45,6 @@ export class PositionDetailComponent implements OnInit {
         this.appComponent.user.game = game;
         this.barChartData = [];
         this.barChartLabels = []
-        console.log(this.populateTable(this.recievedData));
 
         if (this.position)
           this.chartService.getData(this.position.stockSymbol).subscribe(data => {

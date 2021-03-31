@@ -14,7 +14,7 @@
                 <th scope="row">{{position.stockSymbol}}</th>
                 <td>{{position.quantity}}</td>
                 <td>{{null}}</td>
-                <td><input type="number" id="howMuchToBuyOrSell{{ position.positionId }}"> <button (click)="buy()">Buy</button> <button (click)="sell()">Sell</button></td>
+                <td><input type="number" id="howMuchToBuyOrSell{{ position.positionId }}"> <button id="buy{{ position.positionId }}" (click)="buy()">Buy</button> <button id="sell{{ position.positionId }}" (click)="sell()">Sell</button></td>
             </tr>
             
         </tbody>
