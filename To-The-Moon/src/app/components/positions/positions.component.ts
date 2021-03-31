@@ -29,7 +29,7 @@ export class PositionsComponent implements OnInit {
     this.getPositions();
     for(let position in this.positions){
       console.log(this.positions[position])
-      document.getElementById(`buy${ position }`)
+      document.getElementById(`buy${ this.positions[position] }`)
     }
   }
 
