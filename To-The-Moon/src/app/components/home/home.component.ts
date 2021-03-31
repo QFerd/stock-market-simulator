@@ -159,7 +159,7 @@ export class HomeComponent implements OnInit {
     console.log(info[startDateInInfo][getClose])
     APIDataArr.push(Number.parseFloat(recievedData[topKey][startDateInInfo][getClose]))
     for(let i =0; i<this.phase;i++){
-      var laterDateInInfo = container[indexOfStartDateInInfo+i];
+      var laterDateInInfo = container[indexOfStartDateInInfo-i];
       this.barChartLabels.push(laterDateInInfo)
       console.log(laterDateInInfo)
       console.log(info[laterDateInInfo][getClose])
