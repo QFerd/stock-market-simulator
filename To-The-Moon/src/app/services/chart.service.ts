@@ -10,11 +10,11 @@ export class ChartService {
 
   constructor(private http: HttpClient) { }
 
-  stockSymbol: String = "IBM";
+
 
   public getData(symbol:string): Observable<any> {
     console.log("hi")
-    return this.http.get(`${ALPHAVANTAGE_URL}&function=TIME_SERIES_DAILY&symbol=${symbol}`)
+    return this.http.get(`${ALPHAVANTAGE_URL}&function=TIME_SERIES_MONTHLY&symbol=${symbol}`)
     //https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo
   }
 }
