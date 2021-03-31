@@ -1,105 +1,59 @@
 package com.revature.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
+import com.revature.models.Game;
+import com.revature.models.User;
+import com.revature.repository.UserRepositoryImpl;
+import com.revature.service.UserServiceImpl;
+
 public class UserRepoTest {
+	
+	// class to be tested
+		private UserServiceImpl userv;
+
+		// dependencies that our service layer needs in order to make contact with DB
+		private UserRepositoryImpl uRepo;
 	
 	@Before
 	public void init() {
 	    MockitoAnnotations.initMocks(this);
+		userv = new UserServiceImpl();
+		
+		// fake database connection & tricking service layer
+		uRepo = mock(UserRepositoryImpl.class);
+		
 	}
+	
+	private UserRepositoryImpl userRepository;
 
 	@Test
 	public void testSuiteTest() { //A test of the JUnit Testing Suite.
 		assertEquals("This is a test.", "This is a test.");
 	}
 	
-	/*
-	 * @Override
-	public void register(User user) {
-		logger.info("Attempting to register user from UserRepository.");
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<User> getAllUsers() {
-		logger.info("Attempting to list all users from UserRepository.");
-		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
-	}
-
-	@Override
-	public User getUser(String username) {
-		try {
-			logger.info("Attempting to get user from UserRepository.");
-			return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.like("username", username))
-					.list().get(0);
-		} catch (IndexOutOfBoundsException e) {
-			logger.debug(e);
-			return null;
-		}	
-
+	@Test
+	public void getAllUsersTest() {
+		List<User> ulist = new ArrayList<User>();
+		when(uRepo.getAllUsers()).thenReturn(ulist);
+		List<User> ulist2 = uRepo.getAllUsers();
+		assertEquals(ulist, ulist2);
 	}
 	
-
-	
-	@Override
-	public void createOrUpdateUser(User user) {
-		logger.info("Attempting to create or update user from UserRepository.");
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
-		
+	@Test
+	public void getUserTest() {
+		User u = new User();
+		when(uRepo.getUser("Test")).thenReturn(u);
+		User u2 = uRepo.getUser("Test");
+		assertEquals(u, u2);
 	}
-	 * 
-	 * 
-	 * 
-	 * 	public User(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
-
-	}
-	
-
-	public User(String username, String password, String userRole, Portfolio portfolio) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.userRole = userRole;
-		this.portfolio = portfolio;
-	}
-
-
-	public User(String username, String password, String userRole) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.userRole = userRole;
-	}
-
-
-
-	public User(String username, String password, String userRole, Game game) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.userRole = userRole;
-		this.game = game;
-	}
-
-
-	public User(int userId, String username, String password, String userRole, Portfolio portfolio) {
-
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.userRole = userRole;
-		this.portfolio = portfolio;
-	}
-	 */
-
 }
