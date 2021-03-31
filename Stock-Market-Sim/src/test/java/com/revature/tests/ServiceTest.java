@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.revature.models.User;
-import com.revature.models.UserRole;
 import com.revature.repository.UserRepositoryImpl;
 import com.revature.service.UserServiceImpl;
 
@@ -47,7 +46,7 @@ public class ServiceTest {
 		@Test
 		public void confirmRegister() {
 						
-			User sampleUser = new User(1, "mi", "1234", new UserRole(1, "student", null), null); 
+			User sampleUser = new User(1, "mi", "1234", "student", null); 
 			
 			// create a fake list representing the list of User pull from the DB
 			List<User> list = new ArrayList<User>();
@@ -56,8 +55,8 @@ public class ServiceTest {
 			when(uRepo.getAllUsers()).thenReturn(list);
 			
 //			System.out.println(sampleUser.getUsername());
-			System.out.println(userv.getUser(sampleUser.getUsername()));
-			User gotUser = userv.getUser(sampleUser.getUsername());
+			//System.out.println(userv.getUser(sampleUser.getUsername()));
+			User gotUser = uRepo.getAllUsers().get(0);
 //			System.out.println(gotUser);
 			
 			assertEquals(sampleUser, gotUser);
