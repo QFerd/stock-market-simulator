@@ -1,4 +1,4 @@
-package com.revature.mocktests;
+package com.revature.tests;
 
 import static org.junit.Assert.assertEquals;
 
