@@ -147,8 +147,10 @@ export class HomeComponent implements OnInit {
     Object.keys(recievedData).map(k => this.recievedData[k] )
     var container = Object.keys(info);
     console.log(container)
-
-    var indexOfStartDateInInfo= container.findIndex(k=>k.includes(`${this.startYear}-0${this.startMonth}`))
+    if(this.startMonth<=9)
+      var indexOfStartDateInInfo= container.findIndex(k=>k.includes(`${this.startYear}-0${this.startMonth}`))
+    else 
+      var indexOfStartDateInInfo = container.findIndex(k => k.includes(`${this.startYear}-${this.startMonth}`))
     console.log(container[indexOfStartDateInInfo]);
     var APIDataArr = []
 
