@@ -23,9 +23,14 @@ export class PositionsComponent implements OnInit {
   positions: Position[] = [];
   public tempHolder:any;
   constructor(private stockService:StockService,private positionService: PositionService, private appComponent:AppComponent,public homeComponent:HomeComponent, public chartService:ChartService) { }
-
+  timeVar = setTimeout(()=>this.ngOnInit(),200);
   ngOnInit(): void {
+
     this.getPositions();
+    for(let position in this.positions){
+      console.log(this.positions[position])
+      document.getElementById(`buy${ position }`)
+    }
   }
 
   onSelect(position: Position): void {
@@ -46,7 +51,7 @@ export class PositionsComponent implements OnInit {
       this.positions=this.appComponent.user.portfolio.positionList;
       this.appComponent.user.portfolio.positionList.forEach(p =>{
         this.chartService.getData(p.stockSymbol).subscribe(data =>{
-          
+
         })
       })
     }
