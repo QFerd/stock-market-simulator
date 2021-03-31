@@ -1,6 +1,6 @@
 <div *ngIf="this.appComponent.user.userRole != ''">   
-    <nav class="navbar  navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand" href="#">To The Moon: A game of historical investement</a>
+    <nav class="navbar  navbar-expand-lg  ">
+        <a class="navbar-brand" href="#" text-decoration-none>To The Moon: A game of historical investement</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,11 +8,14 @@
         <div  *ngIf="this.appComponent.user.userRole == 'Teacher'"class="collapse navbar-collapse" id="navbarTogglerDemo02" >
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                
-                <li class="nav-item active">
+                <li class="nav-item" [routerLinkActive] ="['active']" >
                     <a class="nav-link" routerLink="teacher/home">Home<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" routerLink = "teacher/classroom">Classrooms</a>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" routerLink = "teacher/registry/classroom">Classrooms</a>
+                </li>
+                <li class="nav-item" [routerLinkActive] ="['active']">
+                    <a class="nav-link" routerLink = "teacher/registry/students">Students</a>
                 </li>
             </ul>
           <button type="button" class="btn btn-info" (click) = "logout()">Logout</button>
