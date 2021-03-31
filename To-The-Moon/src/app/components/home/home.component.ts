@@ -18,8 +18,18 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class HomeComponent implements OnInit {
 
-  stocks: stock[] = [
+  public cashRemaining:number = 0;
+  public stockValue: number = 0;
+  public totalValue: number = 0;
 
+  public startYear:number=0;
+  public startMonth:number=0;
+  public startDay: number=0;
+
+  public phase:number=0;
+
+
+  stocks: stock[] = [
     { stockSymbol: "AMC" },
     { stockSymbol: "GME" },
     {stockSymbol:"IBM"},
@@ -29,28 +39,49 @@ export class HomeComponent implements OnInit {
     {stockSymbol:"COP"},
     {stockSymbol:"TX"},
     {stockSymbol:"CMC"}
-  
   ];
   timerId:any = setInterval(()=>{},3000);
   constructor(public appComponent: AppComponent, public userService: UserServiceService, private chartService: ChartService, private gameService:GameService) {
+
     if (this.appComponent.user.portfolio)
+    { 
+      this.cashRemaining= this.appComponent.user.portfolio.cashValue;
+      this.stockValue = this.appComponent.user.portfolio.stockValue;
+      this.totalValue = this.appComponent.user.portfolio.totalValue;
        this.timerId = setInterval(()=>{
          this.updateGame();
-        },5000);
+        },3000);
     // window.onload= this.populateTable;
+      }
    }
    
   userToDisplay:User = this.appComponent.user;
   ngOnInit(): void {
+    
+    if(this.appComponent.user.game){
+      var startDateString = this.appComponent.user.game.startDate
+      var startDateArray = startDateString.split('-');
+      this.startYear=parseInt(startDateArray[0]);
+      this.startMonth=parseInt(startDateArray[1]);
+      this.startDay = parseInt(startDateArray[2]);
+      this.phase= this.appComponent.user.game.phase
+      console.log("we are on phase " + this.phase)
+      console.log(startDateArray);
+      console.log("Start Year ="+ this.startYear);
+      console.log("Start Month =" + this.startMonth);
+      console.log("Start Day =" + this.startDay);
+    }
     this.chartService.getData('GME').subscribe(data => {
       this.recievedData = data;
       console.log(data)
+      this.barChartData = [];
+      this.barChartLabels = []
       this.populateTable(data);
     })
   }
 
 
-
+  
 
 
   stocksInputted:Position[]=[];
@@ -86,11 +117,19 @@ export class HomeComponent implements OnInit {
       {
         if(this.appComponent.user.game?.phase!=game.phase){
           console.log("updating");
-          this.populateTable(this.recievedData);
           this.appComponent.user.game=game;
-          
+          var stockBalance = this.getBalances();
+          this.phase = game.phase
+          this.barChartData = [];
+          this.barChartLabels = []
+          console.log(this.populateTable(this.recievedData));
         }
       })
+  }
+  getBalances():number {
+    
+
+    return 0;
   }
 
 
@@ -100,36 +139,44 @@ export class HomeComponent implements OnInit {
 
   public dataArray: any = [];
 
-  public populateTable(recievedData:any) {
-    if(this.appComponent.user.game){
-      var dates
-      for (let i = 0; i < this.appComponent.user.game.phase;i++){
+  public populateTable(recievedData:any):number {
+    var topKey = "Monthly Time Series"
+    var getClose = "4. close";
+    var info = recievedData[topKey];
+    console.log(info)
+    Object.keys(recievedData).map(k => this.recievedData[k] )
+    var container = Object.keys(info);
+    console.log(container)
 
-      }
-    this.barChartData=[]
-    console.log("doing it");
-    var date = this.date;
+    var indexOfStartDateInInfo= container.findIndex(k=>k.includes(`${this.startYear}-0${this.startMonth}`))
+    console.log(container[indexOfStartDateInInfo]);
     var APIDataArr = []
-    console.log(this.recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]);
-      console.log(recievedData["Time Series (Daily)"][`${date}-05`]["4. close"])
-    APIDataArr.push(Number.parseFloat(recievedData["Time Series (Daily)"][`${date}-05`]["4. close"]))
-    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-06`]["4. close"]))
-    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-07`]["4. close"]))
-    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-08`]["4. close"]))
-    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-11`]["4. close"]))
-    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-12`]["4. close"]))
-    APIDataArr.push(parseInt(recievedData["Time Series (Daily)"][`${date}-13`]["4. close"]))
-    console.log(APIDataArr)
-    //this.dataArray = APIDataArr
+
+    var startDateInInfo = container[indexOfStartDateInInfo];
+    this.barChartLabels.push(startDateInInfo)
+    console.log(info[startDateInInfo][getClose])
+    APIDataArr.push(Number.parseFloat(recievedData[topKey][startDateInInfo][getClose]))
+    for(let i =0; i<this.phase;i++){
+      var laterDateInInfo = container[indexOfStartDateInInfo+i];
+      this.barChartLabels.push(laterDateInInfo)
+      console.log(laterDateInInfo)
+      console.log(info[laterDateInInfo][getClose])
+      APIDataArr.push(Number.parseFloat(info[laterDateInInfo][getClose]))
+    }
+    
     this.barChartData.push({ data: APIDataArr, label: 'Inputted Data', fill: false, backgroundColor:'red',borderColor:'blue'});
     
-    this.barChartLabels = ["testing", '2007', '2008', '2009', '2010', '2011', '2012']
-    }
+    console.log(APIDataArr[APIDataArr.length - 1]);
+    return APIDataArr[APIDataArr.length-1]-APIDataArr[APIDataArr.length-2];
   }
 
-  //For chart:
-
   public barChartOptions = {
+    title: {
+      display: true,
+      text: 'Total Balance',
+      fontSize: 30
+    },
+    
     scaleShowVerticalLines: false,
     responsive: true,
     elements: {
@@ -138,13 +185,11 @@ export class HomeComponent implements OnInit {
       }
     }
   };
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public title:string = 'balance'
+  public barChartLabels = [''];
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
   public barChartData: any = [
-    { data: this.dataArray, label: 'Series A', fill: false },
-    { data: [130, 120, 130, 120, 130, 120, 130], label: 'Series B' },
-    { data: [120, 125, 122, 130, 128, 127, 120], label: 'Series C' }
   ];
 
 }

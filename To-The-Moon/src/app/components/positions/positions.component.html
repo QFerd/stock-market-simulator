@@ -3,9 +3,10 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col-3">Symbol</th>
-                <th scope="col-3">Quantity</th>
-                <th scope="col-3">Gain/Loss ($)</th>
+                <th scope="col-4">Symbol</th>
+                <th scope="col-4">Quantity</th>
+                <th scope="col-4">Last Month Gain/Loss ($)</th>
+                <th scope="col-4">Buy/Sell</th>
             </tr>
         </thead>
         <tbody >
@@ -13,12 +14,11 @@
                 <th scope="row">{{position.stockSymbol}}</th>
                 <td>{{position.quantity}}</td>
                 <td>{{null}}</td>
+                <td><input type="number" id="howMuchToBuyOrSell{{ position.positionId }}"> <button (click)="buy()">Buy</button> <button (click)="sell()">Sell</button></td>
             </tr>
             
         </tbody>
     </table>
 </div>
-
-<button (click)="testing()">Testing</button>
 
 <app-position-detail [position]="selectedPosition"></app-position-detail>
