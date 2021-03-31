@@ -1,1 +1,15 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+ * {
+   
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+}
+
+.jumbotron {
+
+    background-color: #0081a7ff !important;
+}
+
+.btn {
+    background-color: #f79824ff !important;
+}
