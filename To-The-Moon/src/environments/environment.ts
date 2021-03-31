@@ -8,6 +8,7 @@ export const environment = {
 
 
 
+
 export const TO_THE_MOON_URL = `http://ec2-18-216-168-152.us-east-2.compute.amazonaws.com:8085/Stock-Market-Sim-0.0.1-SNAPSHOT/`
 export const ALPHAVANTAGE_URL = `https://www.alphavantage.co/query?apikey=H5IXQEB5RBQLXVOM`;
 
