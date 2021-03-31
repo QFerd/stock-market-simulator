@@ -16,26 +16,30 @@
     </div>
 </ng-template>
 <ng-template #hasGame>
-    <span>Welcom {{userToDisplay.username}}</span>
+    <div class="jumbotron text-center"><h1>Welcome {{userToDisplay.username}}</h1></div>
     <div class="container text-center">
         <div class="row">
-            <div class="col-md-2">
-                <table>
-                    <ul>
-                        <li>Test</li>
-                    </ul>
-                </table>
-            </div>
-            <div class="col-md-10">
-                <button (click)=populateTable()>do it</button>
+
+            <div class="col-md-12">
+                <!-- <button (click)=populateTable()>do it</button> -->
             <canvas baseChart
               [datasets]="barChartData"
               [labels]="barChartLabels"
               [options]="barChartOptions"
               [legend]="barChartLegend"
-              [chartType]="barChartType">
+              [chartType]="barChartType"
+              [title]="title">
             </canvas>
             </div>
         </div>
+    <div class="row">
+        <div class="col-md-4 "><p class="text-center">Cash remaining: {{this.cashRemaining}}</p></div>
+        <div class="col-md-4 "><p class="text-center">Stock Value Holding: {{this.stockValue}}</p></div>
+        <div class="col-md-4 "><p class="text-center">Total Value: {{this.totalValue}}</p></div>
     </div>
+    </div>
+
+    
+    <div class="container"><app-positions></app-positions></div>
+
 </ng-template>
