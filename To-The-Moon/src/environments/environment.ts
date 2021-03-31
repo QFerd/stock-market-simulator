@@ -8,7 +8,8 @@ export const environment = {
 
 
 export const TO_THE_MOON_URL = `http://localhost:8080/Stock-Market-Sim/`
-export const ALPHAVANTAGE_URL = `https://www.alphavantage.co/query?apikey=aKqHwBuTsDKdEZ7Aq9AYKHRfnH4A`;
+// export const ALPHAVANTAGE_URL = `https://www.alphavantage.co/query?apikey=aKqHwBuTsDKdEZ7Aq9AYKHRfnH4A`;
+export const ALPHAVANTAGE_URL = `https://www.alphavantage.co/query?`;
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

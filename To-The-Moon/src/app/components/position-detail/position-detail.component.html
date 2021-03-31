@@ -1,9 +1,22 @@
-<h2>Positions</h2>
 
-<div *ngIf="position">
-    <h2>{{position.stockSymbol | uppercase}}</h2>
-    <div><span>Position Rank: </span>{{position.positionId}}</div>
-    <div><span>Stock Symbol: </span>{{position.stockSymbol}}</div>
-    <div><span>Quantity: </span>{{position.quantity}}</div>
-    <div><span>Gain/Loss: </span> x </div>
+
+<div class="container-fluid text-center">
+    <h2>Positions</h2>
+    <div *ngIf="position" class="text-center">
+        <h2>{{position.stockSymbol | uppercase}}</h2>
+        <div><span>Position Rank: </span>{{position.positionId}}</div>
+        <div><span>Stock Symbol: </span>{{position.stockSymbol}}</div>
+        <div><span>Quantity: </span>{{position.quantity}}</div>
+        <div><span>Gain/Loss: </span> x </div>
+        <div><button (click)="updateGame(true)">Update Graph</button></div>
+        <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [title]="title">
+            </canvas>
+    </div>
 </div>
+

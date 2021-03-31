@@ -5,6 +5,8 @@ import { POSITIONS } from '../../mock-positions'
 import { AppComponent } from 'src/app/app.component';
 import { StockService } from 'src/app/services/stock.service';
 import { templateJitUrl } from '@angular/compiler';
+import { HomeComponent } from '../home/home.component';
+import { ChartService } from 'src/app/services/chart.service';
 
 
 @Component({
@@ -16,9 +18,11 @@ export class PositionsComponent implements OnInit {
 
   selectedPosition?: Position;
 
+  lastMonthGainLoss:Map<string,number> = new Map<string,number>();
+
   positions: Position[] = [];
   public tempHolder:any;
-  constructor(private stockService:StockService,private positionService: PositionService, private appComponent:AppComponent) { }
+  constructor(private stockService:StockService,private positionService: PositionService, private appComponent:AppComponent,public homeComponent:HomeComponent, public chartService:ChartService) { }
 
   ngOnInit(): void {
     this.getPositions();
@@ -35,10 +39,26 @@ export class PositionsComponent implements OnInit {
     console.log(this.tempHolder['Meta Data']);
     console.log(this.tempHolder['Meta Data']['2. Symbol']);
   }
-
+  
   getPositions(): void {
-    if (this.appComponent.user.portfolio?.positionList)
+    if(this.appComponent.user.portfolio)
+    if (this.appComponent.user.portfolio.positionList){
       this.positions=this.appComponent.user.portfolio.positionList;
+      this.appComponent.user.portfolio.positionList.forEach(p =>{
+        this.chartService.getData(p.stockSymbol).subscribe(data =>{
+          
+        })
+      })
+    }
+   
   }
 
+
+  buy(){
+
+  }
+
+  sell(){
+
+  }
 }
