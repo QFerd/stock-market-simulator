@@ -46,7 +46,7 @@ export class PositionsComponent implements OnInit {
       this.positions=this.appComponent.user.portfolio.positionList;
       this.appComponent.user.portfolio.positionList.forEach(p =>{
         this.chartService.getData(p.stockSymbol).subscribe(data =>{
-
+          
         })
       })
     }

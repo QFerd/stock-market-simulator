@@ -36,26 +36,27 @@ export class PositionDetailComponent implements OnInit {
     
   }
 
-  updateGame(doIt:boolean) {
+  updateGame(doIt: boolean) {
     console.log("checking game");
     // this.populateTable();
-    this.gameService.getGamePhase(this.appComponent.user).subscribe(game => {   
-        if (this.appComponent.user.game?.phase != game.phase ||doIt) {         
-             console.log("updating");
-              this.appComponent.user.game = game;
-              this.barChartData = [];
-              this.barChartLabels = []
-              console.log(this.populateTable(this.recievedData));
-        
-            if(this.position)
-              this.chartService.getData(this.position.stockSymbol).subscribe(data => {
-                  this.recievedData = data;
-                  console.log(data)
-                this.populateTable(data);
+    this.gameService.getGamePhase(this.appComponent.user).subscribe(game => {
+      if (this.appComponent.user.game?.phase != game.phase || doIt) {
+        console.log("updating");
+        this.appComponent.user.game = game;
+        this.barChartData = [];
+        this.barChartLabels = []
+        console.log(this.populateTable(this.recievedData));
 
-                
+        if (this.position)
+          this.chartService.getData(this.position.stockSymbol).subscribe(data => {
+            this.recievedData = data;
+            console.log(data)
+            this.populateTable(data);
 
-      })}
+
+
+          })
+      }
     })
   }
 
